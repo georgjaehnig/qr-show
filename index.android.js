@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     },
     picker: {
       width: 200,
+      marginBottom: 20,
     }
 });
  
