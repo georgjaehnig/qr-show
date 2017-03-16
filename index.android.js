@@ -14,10 +14,12 @@ class QrShow extends Component {
 
   codes = [
     {
+      key: 1,
       label: 'Wifi QR poster',
       value: 'https://georgjaehnig.github.io/wifi-qr-poster/'
     },
     {
+      key: 2,
       label: 'FFit',
       value: 'https://www.findfind.it/'
     }
@@ -36,7 +38,7 @@ class QrShow extends Component {
           onValueChange={(text) => this.setState({text: text})} 
         >
 
-          {this.codes.map((code) => <Picker.Item label={code.label} value={code.value} />)}
+          {this.codes.map((code) => <Picker.Item key={code.key} label={code.label} value={code.value} />)}
 
         </Picker>
         <QRCode
