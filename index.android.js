@@ -7,7 +7,7 @@ import {
     AppRegistry,
     StyleSheet,
     View,
-	  Picker
+    Picker
 } from 'react-native';
  
 class QrShow extends Component {
@@ -20,9 +20,9 @@ class QrShow extends Component {
       <View style={styles.container}>
         <Picker
           style={styles.picker}
-					selectedValue={this.state.text}
+          selectedValue={this.state.text}
           onValueChange={(text) => this.setState({text: text})} 
-			  >
+        >
           <Picker.Item label="Java" value="java" />
           <Picker.Item label="JavaScript" value="js" />
         </Picker>
