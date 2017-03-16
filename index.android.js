@@ -4,11 +4,11 @@ import React, { Component } from 'react'
 import QRCode from 'react-native-qrcode';
  
 import {
-    AppRegistry,
-    StyleSheet,
-    View,
-    Picker,
-    Text
+  AppRegistry,
+  StyleSheet,
+  View,
+  Picker,
+  Text
 } from 'react-native';
  
 class QrShow extends Component {
