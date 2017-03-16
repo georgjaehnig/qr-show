@@ -7,7 +7,7 @@ import {
     AppRegistry,
     StyleSheet,
     View,
-    TextInput
+	  Picker
 } from 'react-native';
  
 class QrShow extends Component {
@@ -18,11 +18,14 @@ class QrShow extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => this.setState({text: text})}
-          value={this.state.text}
-        />
+        <Picker
+          style={styles.picker}
+					selectedValue={this.state.text}
+          onValueChange={(text) => this.setState({text: text})} 
+			  >
+          <Picker.Item label="Java" value="java" />
+          <Picker.Item label="JavaScript" value="js" />
+        </Picker>
         <QRCode
           value={this.state.text}
           size={200} />
@@ -38,14 +41,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
- 
-    input: {
-        height: 40,
-        borderColor: 'gray',
-        borderWidth: 1,
-        margin: 10,
-        borderRadius: 5,
-        padding: 5,
+    picker: {
+      width: 100,
     }
 });
  
