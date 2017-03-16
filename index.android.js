@@ -17,8 +17,8 @@ class QrShow extends Component {
 
   codes = [
     {
-      label: 'Wifi QR poster2',
-      key: 'https://georgjaehnig.github.io/wifi-qr-poster/'
+      label: 'Wifi QR poster',
+      value: 'https://georgjaehnig.github.io/wifi-qr-poster/'
     },
     {
       label: 'FFit',
