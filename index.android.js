@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     picker: {
-      width: 100,
+      width: 200,
     }
 });
  
