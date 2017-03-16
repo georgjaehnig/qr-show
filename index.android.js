@@ -7,7 +7,8 @@ import {
     AppRegistry,
     StyleSheet,
     View,
-    Picker
+    Picker,
+	  Text
 } from 'react-native';
  
 class QrShow extends Component {
@@ -32,18 +33,23 @@ class QrShow extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Picker
-          style={styles.picker}
-          selectedValue={this.state.text}
-          onValueChange={(text) => this.setState({text: text})} 
-        >
+        <View style={styles.navbar}>
+          <Text style={styles.apptitle}>QR Show</Text>
+        </View>
+        <View style={styles.content}>
+          <Picker
+            style={styles.picker}
+            selectedValue={this.state.text}
+            onValueChange={(text) => this.setState({text: text})} 
+          >
 
-          {this.codes.map((code) => <Picker.Item key={code.key} label={code.label} value={code.value} />)}
+            {this.codes.map((code) => <Picker.Item key={code.key} label={code.label} value={code.value} />)}
 
-        </Picker>
-        <QRCode
-          value={this.state.text}
-          size={200} />
+          </Picker>
+          <QRCode
+            value={this.state.text}
+            size={200} />
+        </View>
       </View>
     );
   };
@@ -52,6 +58,19 @@ class QrShow extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    navbar: {
+        flex: 1,
+        backgroundColor: 'steelblue',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    apptitle: {
+			color: 'white',
+			fontSize: 20,
+    },
+    content: {
+        flex: 10,
         backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center'
