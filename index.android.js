@@ -8,7 +8,8 @@ import {
   StyleSheet,
   View,
   Picker,
-  Text
+  Text,
+  Dimensions
 } from 'react-native';
  
 class QrShow extends Component {
@@ -31,6 +32,16 @@ class QrShow extends Component {
   };
  
   render() {
+
+    // Get Dimensions for current window.
+    var {height, width} = Dimensions.get('window');
+
+    // Get the lower value.
+    var qrCodeSize = Math.min(height,width);
+
+    // Add some margin.
+    qrCodeSize = qrCodeSize - 40;
+
     return (
       <View style={styles.container}>
         <View style={styles.navbar}>
@@ -48,7 +59,7 @@ class QrShow extends Component {
           </Picker>
           <QRCode
             value={this.state.text}
-            size={200} />
+            size={qrCodeSize} />
         </View>
       </View>
     );
