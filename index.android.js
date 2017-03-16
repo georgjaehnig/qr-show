@@ -11,9 +11,6 @@ import {
 } from 'react-native';
  
 class QrShow extends Component {
-  state = {
-    text: 'http://facebook.github.io/react-native/',
-  };
 
   codes = [
     {
@@ -25,6 +22,10 @@ class QrShow extends Component {
       value: 'https://www.findfind.it/'
     }
   ];
+
+  state = {
+    text: this.codes[0].value,
+  };
  
   render() {
     return (
