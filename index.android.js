@@ -14,18 +14,19 @@ class QrShow extends Component {
   state = {
     text: 'http://facebook.github.io/react-native/',
   };
+
+  codes = [
+    {
+      label: 'Wifi QR poster2',
+      key: 'https://georgjaehnig.github.io/wifi-qr-poster/'
+    },
+    {
+      label: 'FFit',
+      value: 'https://www.findfind.it/'
+    }
+  ];
  
   render() {
-    const codes = [
-      {
-        label: 'Wifi QR poster',
-        key: 'https://georgjaehnig.github.io/wifi-qr-poster/'
-      },
-      {
-        label: 'FFit',
-        value: 'https://www.findfind.it/'
-      }
-    ];
     return (
       <View style={styles.container}>
         <Picker
@@ -34,7 +35,7 @@ class QrShow extends Component {
           onValueChange={(text) => this.setState({text: text})} 
         >
 
-          {codes.map((code) => <Picker.Item label={code.label} value={code.value} />)}
+          {this.codes.map((code) => <Picker.Item label={code.label} value={code.value} />)}
 
         </Picker>
         <QRCode
