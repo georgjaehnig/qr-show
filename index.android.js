@@ -8,7 +8,7 @@ import {
     StyleSheet,
     View,
     Picker,
-	  Text
+    Text
 } from 'react-native';
  
 class QrShow extends Component {
@@ -56,29 +56,29 @@ class QrShow extends Component {
 }
  
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    navbar: {
-        flex: 1,
-        backgroundColor: 'steelblue',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    apptitle: {
-			color: 'white',
-			fontSize: 20,
-    },
-    content: {
-        flex: 10,
-        backgroundColor: 'white',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    picker: {
-      width: 200,
-      marginBottom: 20,
-    }
+  container: {
+    flex: 1,
+  },
+  navbar: {
+    flex: 1,
+    backgroundColor: 'steelblue',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },  
+  apptitle: {
+    color: 'white',
+    fontSize: 20,
+  },
+  content: {
+    flex: 10,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  picker: {
+    width: 200,
+    marginBottom: 20,
+  }
 });
  
 AppRegistry.registerComponent('QrShow', () => QrShow);
