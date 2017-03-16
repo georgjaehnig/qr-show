@@ -16,6 +16,16 @@ class QrShow extends Component {
   };
  
   render() {
+    const codes = [
+      {
+        label: 'Wifi QR poster',
+        key: 'https://georgjaehnig.github.io/wifi-qr-poster/'
+      },
+      {
+        label: 'FFit',
+        value: 'https://www.findfind.it/'
+      }
+    ];
     return (
       <View style={styles.container}>
         <Picker
@@ -23,8 +33,9 @@ class QrShow extends Component {
           selectedValue={this.state.text}
           onValueChange={(text) => this.setState({text: text})} 
         >
-          <Picker.Item label="Java" value="java" />
-          <Picker.Item label="JavaScript" value="js" />
+
+          {codes.map((code) => <Picker.Item label={code.label} value={code.value} />)}
+
         </Picker>
         <QRCode
           value={this.state.text}
