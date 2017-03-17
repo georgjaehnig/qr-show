@@ -9,7 +9,8 @@ import {
   View,
   Picker,
   Text,
-  Dimensions
+  Dimensions,
+  AsyncStorage
 } from 'react-native';
  
 class QrShow extends Component {
@@ -26,10 +27,28 @@ class QrShow extends Component {
   ];
 
   state = {
-    text: this.codes[0].value,
+    text: null,
   };
  
+  constructor(props) {
+    super(props);
+
+    // TODO: Unfortunately, getItem takes a while,
+    // so first this need to be set.
+    // And this create an ugly effect, because first,
+    // this code is show, and half a second later the actual current one.
+    this.state.text = this.codes[0].value;
+
+    AsyncStorage.getItem("currentCodeValue").then((currentCodeValue) => {
+      if (currentCodeValue !== null) {
+        this.setState({text: currentCodeValue});
+      }
+    })
+
+  }
+
   pickerValueChange = function(text) {
+    AsyncStorage.setItem('currentCodeValue', text);
     return this.setState({text: text});
   }
 
