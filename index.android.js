@@ -29,6 +29,10 @@ class QrShow extends Component {
     text: this.codes[0].value,
   };
  
+  pickerValueChange = function(text) {
+    return this.setState({text: text});
+  }
+
   render() {
 
     // Get Dimensions for current window.
@@ -49,7 +53,7 @@ class QrShow extends Component {
           <Picker
             style={styles.picker}
             selectedValue={this.state.text}
-            onValueChange={(text) => this.setState({text: text})} 
+            onValueChange={(text) => this.pickerValueChange(text)}
           >
 
             {this.codes.map((code, index) => <Picker.Item key={index} label={code.label} value={code.value} />)}
