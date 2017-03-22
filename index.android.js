@@ -110,7 +110,24 @@ class AddScreen extends Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <Text>Text</Text>
+        <Button
+          title="Phone number"
+          onPress={() => navigate('Phone') }
+        />
+      </View>
+    );
+  }
+}
+
+class PhoneScreen extends Component {
+  static navigationOptions = {
+    title: 'Phone Number',
+  };
+  render() {
+    const { navigate } = this.props.navigation;
+    return (
+      <View style={styles.container}>
+        <Text>Phone</Text>
       </View>
     );
   }
@@ -142,6 +159,7 @@ const styles = StyleSheet.create({
 const QrShow = StackNavigator({
   Main: {screen: MainScreen},
   Add: {screen: AddScreen},
+  Phone: {screen: PhoneScreen},
 }); 
 
  
