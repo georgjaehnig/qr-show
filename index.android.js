@@ -127,13 +127,24 @@ class PhoneScreen extends Component {
     return (
       <View style={styles.container}>
         <TextInput
+          ref='DescriptionInput'
+          style={styles.textInput}
+          autoCapitalize="none"
+          placeholder="Enter description (for yourself)"
+          onSubmitEditing={() => this.refs.NumberInput.focus() }
+        />
+        <TextInput
+          ref='NumberInput'
           style={styles.textInput}
           autoCapitalize="none"
           placeholder="Enter phone number, e.g. +123456789"
           autoCorrect={false}
           keyboardType="phone-pad"
         />
-
+        <Button
+          title="Save"
+          onPress={() => navigate('Main') }
+        />
       </View>
     );
   }
