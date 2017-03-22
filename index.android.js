@@ -77,26 +77,24 @@ class MainScreen extends Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.content}>
-          <Picker
-            style={styles.picker}
-            selectedValue={this.state.currentCodeValue}
-            onValueChange={(value, itemPosition) => this.pickerValueChange(value, itemPosition)}
-          >
+        <Picker
+          style={styles.picker}
+          selectedValue={this.state.currentCodeValue}
+          onValueChange={(value, itemPosition) => this.pickerValueChange(value, itemPosition)}
+        >
 
-            {this.codes.map((code, index) => <Picker.Item key={index} label={code.label} value={code.value} />)}
+          {this.codes.map((code, index) => <Picker.Item key={index} label={code.label} value={code.value} />)}
 
-          </Picker>
-          <View style={styles.qrcode}>
-            <QRCode
-              value={this.state.currentCodeValue}
-              size={qrCodeSize} />
-          </View>
-          <Button
-            title="Add"
-            onPress={() => navigate('Add') }
-          />
+        </Picker>
+        <View style={styles.qrcode}>
+          <QRCode
+            value={this.state.currentCodeValue}
+            size={qrCodeSize} />
         </View>
+        <Button
+          title="Add"
+          onPress={() => navigate('Add') }
+        />
       </View>
     );
   };
@@ -136,16 +134,13 @@ class PhoneScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   apptitle: {
     color: 'white',
     fontSize: 20,
-  },
-  content: {
-    flex: 10,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center'
   },
   picker: {
     width: 200,
