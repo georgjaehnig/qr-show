@@ -39,7 +39,7 @@ class QrShow extends Component {
     // this code is show, and half a second later the actual current one.
     this.state.currentCodeValue = this.codes[0].value;
 
-    AsyncStorage.getItem("currentCodeIndex").then((data) => {
+    AsyncStorage.getItem('currentCodeIndex').then((data) => {
       if (data !== null) {
         var currentCodeIndex = JSON.parse(data);
         this.setState({currentCodeValue: this.codes[currentCodeIndex].value});
