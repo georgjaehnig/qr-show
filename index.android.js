@@ -33,7 +33,7 @@ class MainScreen extends Component {
     {
       label: 'FFit',
       value: 'https://www.findfind.it/'
-    }
+    },
   ];
 
   state = {
@@ -130,14 +130,14 @@ class PhoneScreen extends Component {
           ref='DescriptionInput'
           style={styles.textInput}
           autoCapitalize="none"
-          placeholder="Enter description (for yourself)"
+          placeholder="Description, e.g.: My home number"
           onSubmitEditing={() => this.refs.NumberInput.focus() }
         />
         <TextInput
           ref='NumberInput'
           style={styles.textInput}
           autoCapitalize="none"
-          placeholder="Enter phone number, e.g. +123456789"
+          placeholder="Phone number, e.g. +123456789"
           autoCorrect={false}
           keyboardType="phone-pad"
         />
