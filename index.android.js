@@ -27,7 +27,7 @@ class QrShow extends Component {
   ];
 
   state = {
-    text: null,
+    currentCodeValue: null,
   };
  
   constructor(props) {
@@ -37,19 +37,19 @@ class QrShow extends Component {
     // so first this need to be set.
     // And this create an ugly effect, because first,
     // this code is show, and half a second later the actual current one.
-    this.state.text = this.codes[0].value;
+    this.state.currentCodeValue = this.codes[0].value;
 
     AsyncStorage.getItem("currentCodeValue").then((currentCodeValue) => {
       if (currentCodeValue !== null) {
-        this.setState({text: currentCodeValue});
+        this.setState({currentCodeValue: currentCodeValue});
       }
     })
 
   }
 
-  pickerValueChange = function(text) {
-    AsyncStorage.setItem('currentCodeValue', text);
-    return this.setState({text: text});
+  pickerValueChange = function(currentCodeValue) {
+    AsyncStorage.setItem('currentCodeValue', currentCodeValue);
+    return this.setState({currentCodeValue: currentCodeValue});
   }
 
   render() {
@@ -71,15 +71,15 @@ class QrShow extends Component {
         <View style={styles.content}>
           <Picker
             style={styles.picker}
-            selectedValue={this.state.text}
-            onValueChange={(text) => this.pickerValueChange(text)}
+            selectedValue={this.state.currentCodeValue}
+            onValueChange={(value) => this.pickerValueChange(value)}
           >
 
             {this.codes.map((code, index) => <Picker.Item key={index} label={code.label} value={code.value} />)}
 
           </Picker>
           <QRCode
-            value={this.state.text}
+            value={this.state.currentCodeValue}
             size={qrCodeSize} />
         </View>
       </View>
