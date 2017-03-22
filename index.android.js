@@ -64,6 +64,8 @@ class MainScreen extends Component {
 
   render() {
 
+    const { navigate } = this.props.navigation;
+
     // Get Dimensions for current window.
     var {height, width} = Dimensions.get('window');
 
@@ -90,11 +92,26 @@ class MainScreen extends Component {
             size={qrCodeSize} />
           <Button
             title="Add"
+            onPress={() => navigate('Profile', { name: 'Jane' }) }
           />
         </View>
       </View>
     );
   };
+}
+
+class ProfileScreen extends Component {
+  static navigationOptions = {
+    title: 'Profile',
+  };
+  render() {
+    const { navigate } = this.props.navigation;
+    return (
+      <View style={styles.container}>
+        <Text>Text</Text>
+      </View>
+    );
+  }
 }
  
 const styles = StyleSheet.create({
@@ -119,6 +136,7 @@ const styles = StyleSheet.create({
 
 const QrShow = StackNavigator({
   Main: {screen: MainScreen},
+  Profile: {screen: ProfileScreen},
 }); 
 
  
