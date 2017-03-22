@@ -5,13 +5,13 @@ import QRCode from 'react-native-qrcode';
  
 import {
   AppRegistry,
-  StyleSheet,
-  View,
-  Picker,
-  Text,
-  Dimensions,
   AsyncStorage,
   Button,
+  Dimensions,
+  Picker,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
  
 class QrShow extends Component {
