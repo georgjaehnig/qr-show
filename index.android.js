@@ -47,7 +47,7 @@ class QrShow extends Component {
 
   }
 
-  pickerValueChange = function(currentCodeValue) {
+  pickerValueChange = function(currentCodeValue, currentCodeIndex) {
     AsyncStorage.setItem('currentCodeValue', currentCodeValue);
     return this.setState({currentCodeValue: currentCodeValue});
   }
@@ -72,7 +72,7 @@ class QrShow extends Component {
           <Picker
             style={styles.picker}
             selectedValue={this.state.currentCodeValue}
-            onValueChange={(value) => this.pickerValueChange(value)}
+            onValueChange={(value, itemPosition) => this.pickerValueChange(value, itemPosition)}
           >
 
             {this.codes.map((code, index) => <Picker.Item key={index} label={code.label} value={code.value} />)}
