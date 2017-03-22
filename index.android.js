@@ -21,7 +21,7 @@ import {
 class MainScreen extends Component {
 
   static navigationOptions = {
-    title: 'Welcome',
+    title: 'QR Show',
   };
 
   codes = [
@@ -75,9 +75,6 @@ class MainScreen extends Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.navbar}>
-          <Text style={styles.apptitle}>QR Show</Text>
-        </View>
         <View style={styles.content}>
           <Picker
             style={styles.picker}
@@ -104,12 +101,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  navbar: {
-    flex: 1,
-    backgroundColor: 'steelblue',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },  
   apptitle: {
     color: 'white',
     fontSize: 20,
