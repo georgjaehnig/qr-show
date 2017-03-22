@@ -151,8 +151,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   picker: {
-    width: 200,
-    marginBottom: 20,
+    alignSelf: 'stretch',
+    margin: 10,
   },
   qrcode: {
     marginBottom: 20,
