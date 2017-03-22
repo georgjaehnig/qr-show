@@ -92,7 +92,7 @@ class MainScreen extends Component {
             size={qrCodeSize} />
           <Button
             title="Add"
-            onPress={() => navigate('Profile', { name: 'Jane' }) }
+            onPress={() => navigate('Add') }
           />
         </View>
       </View>
@@ -100,9 +100,9 @@ class MainScreen extends Component {
   };
 }
 
-class ProfileScreen extends Component {
+class AddScreen extends Component {
   static navigationOptions = {
-    title: 'Profile',
+    title: 'Add QR Code',
   };
   render() {
     const { navigate } = this.props.navigation;
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
 
 const QrShow = StackNavigator({
   Main: {screen: MainScreen},
-  Profile: {screen: ProfileScreen},
+  Add: {screen: AddScreen},
 }); 
 
  
