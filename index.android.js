@@ -87,9 +87,11 @@ class MainScreen extends Component {
             {this.codes.map((code, index) => <Picker.Item key={index} label={code.label} value={code.value} />)}
 
           </Picker>
-          <QRCode
-            value={this.state.currentCodeValue}
-            size={qrCodeSize} />
+          <View style={styles.qrcode}>
+            <QRCode
+              value={this.state.currentCodeValue}
+              size={qrCodeSize} />
+          </View>
           <Button
             title="Add"
             onPress={() => navigate('Add') }
@@ -130,6 +132,9 @@ const styles = StyleSheet.create({
   },
   picker: {
     width: 200,
+    marginBottom: 20,
+  },
+  qrcode: {
     marginBottom: 20,
   }
 });
