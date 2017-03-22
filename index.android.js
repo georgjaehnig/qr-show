@@ -10,7 +10,8 @@ import {
   Picker,
   Text,
   Dimensions,
-  AsyncStorage
+  AsyncStorage,
+  Button
 } from 'react-native';
  
 class QrShow extends Component {
@@ -82,6 +83,9 @@ class QrShow extends Component {
           <QRCode
             value={this.state.currentCodeValue}
             size={qrCodeSize} />
+          <Button
+            title="Add"
+          />
         </View>
       </View>
     );
