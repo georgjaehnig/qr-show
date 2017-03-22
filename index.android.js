@@ -13,8 +13,16 @@ import {
   Text,
   View,
 } from 'react-native';
- 
-class QrShow extends Component {
+
+import {
+  StackNavigator,
+} from 'react-navigation';
+
+class MainScreen extends Component {
+
+  static navigationOptions = {
+    title: 'Welcome',
+  };
 
   codes = [
     {
@@ -117,6 +125,11 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   }
 });
+
+const QrShow = StackNavigator({
+  Main: {screen: MainScreen},
+}); 
+
  
 AppRegistry.registerComponent('QrShow', () => QrShow);
  
