@@ -11,7 +11,7 @@ import {
   Text,
   Dimensions,
   AsyncStorage,
-  Button
+  Button,
 } from 'react-native';
  
 class QrShow extends Component {
