@@ -39,16 +39,17 @@ class QrShow extends Component {
     // this code is show, and half a second later the actual current one.
     this.state.currentCodeValue = this.codes[0].value;
 
-    AsyncStorage.getItem("currentCodeValue").then((currentCodeValue) => {
-      if (currentCodeValue !== null) {
-        this.setState({currentCodeValue: currentCodeValue});
+    AsyncStorage.getItem("currentCodeIndex").then((data) => {
+      if (data !== null) {
+        var currentCodeIndex = JSON.parse(data);
+        this.setState({currentCodeValue: this.codes[currentCodeIndex].value});
       }
     })
 
   }
 
   pickerValueChange = function(currentCodeValue, currentCodeIndex) {
-    AsyncStorage.setItem('currentCodeValue', currentCodeValue);
+    AsyncStorage.setItem('currentCodeIndex', JSON.stringify(currentCodeIndex));
     return this.setState({currentCodeValue: currentCodeValue});
   }
 
