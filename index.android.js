@@ -11,6 +11,7 @@ import {
   Picker,
   StyleSheet,
   Text,
+  TextInput,
   View,
 } from 'react-native';
 
@@ -125,7 +126,14 @@ class PhoneScreen extends Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <Text>Phone</Text>
+        <TextInput
+          style={styles.textInput}
+          autoCapitalize="none"
+          placeholder="Enter phone number, e.g. +123456789"
+          autoCorrect={false}
+          keyboardType="phone-pad"
+        />
+
       </View>
     );
   }
@@ -148,7 +156,11 @@ const styles = StyleSheet.create({
   },
   qrcode: {
     marginBottom: 20,
-  }
+  },
+  textInput: {
+    alignSelf: 'stretch',
+    margin: 10,
+  },
 });
 
 const QrShow = StackNavigator({
