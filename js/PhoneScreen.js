@@ -108,7 +108,11 @@ class PhoneScreen extends Component {
         />
       </View>
     );
-  }
+  };
+
+  componentDidMount() {
+    this.refs.DescriptionInput.focus();
+  };
 }
 
 module.exports = PhoneScreen;
