@@ -105,8 +105,6 @@ class MainScreen extends Component {
         var codeSettings = JSON.parse(data);
         this.codes = codeSettings.codes;
         this.state.currentCodeIndex = codeSettings.currentCodeIndex;
-        console.log('LOG');
-        console.log(this.state.currentCodeIndex);
       }
       // Save defaults.
       else {
