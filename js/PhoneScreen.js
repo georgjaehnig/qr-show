@@ -5,6 +5,7 @@ import styles from './styles.js';
 
 import {
   Alert,
+  AsyncStorage,
   Button,
   StyleSheet,
   TextInput,
@@ -16,11 +17,6 @@ class PhoneScreen extends Component {
   static navigationOptions = {
     title: 'Phone Number',
   };
-
-  save = function(currentCodeValue, currentCodeIndex) {
-    AsyncStorage.setItem('currentCodeIndex', JSON.stringify(currentCodeIndex));
-    return this.setState({currentCodeValue: currentCodeValue});
-  }
 
   showError = function(message) {
     Alert.alert(
@@ -47,6 +43,14 @@ class PhoneScreen extends Component {
       return false;
     }
     return true;
+  };
+
+  createCode = () => {
+    var code = {
+      label: this.state.description,
+      value: 'tel:' + this.state.number,
+    };
+    return code;
   };
 
   state = {
@@ -81,7 +85,19 @@ class PhoneScreen extends Component {
           title="Save"
           onPress={() => { 
             if (this.validate()) {
-              navigate('Main');
+              // Get current codes.
+              AsyncStorage.getItem('codes').then((data) => {
+                if (data !== null) {
+                  var codes = JSON.parse(data);
+                  // Create and add new code.
+                  var code = this.createCode();
+                  codes.push(code);
+                  // Save and go back to main then.
+                  AsyncStorage.setItem('codes', JSON.stringify(codes)).then((data) => {
+                    navigate('Main');
+                  });
+                }
+              });
             }
           }}
         />

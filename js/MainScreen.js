@@ -22,46 +22,57 @@ class MainScreen extends Component {
     title: 'QR Show',
   };
 
+  // Default codes.
   codes = [
     {
-      label: 'Wifi QR poster',
-      value: 'https://georgjaehnig.github.io/wifi-qr-poster/'
-    },
-    {
-      label: 'FFit',
-      value: 'https://www.findfind.it/'
+      label: 'QR Show on Github',
+      value: 'https://github.com/georgjaehnig/qr-show'
     },
   ];
 
   state = {
-    currentCodeValue: null,
+    isLoading: true,
+    currentCodeValue: this.codes[0].value,
   };
- 
-  constructor(props) {
-    super(props);
-
-    // TODO: Unfortunately, getItem takes a while,
-    // so first this need to be set.
-    // And this create an ugly effect, because first,
-    // this code is show, and half a second later the actual current one.
-    this.state.currentCodeValue = this.codes[0].value;
-
-    AsyncStorage.getItem('currentCodeIndex').then((data) => {
-      if (data !== null) {
-        var currentCodeIndex = JSON.parse(data);
-        this.setState({currentCodeValue: this.codes[currentCodeIndex].value});
-      }
-    })
-
-  }
 
   pickerValueChange = function(currentCodeValue, currentCodeIndex) {
     AsyncStorage.setItem('currentCodeIndex', JSON.stringify(currentCodeIndex));
     return this.setState({currentCodeValue: currentCodeValue});
   }
 
+  componentWillMount() {
+    AsyncStorage.getItem('codes').then((data) => {
+      if (data !== null) {
+        this.codes = JSON.parse(data);
+      }
+      else {
+        AsyncStorage.setItem('codes', JSON.stringify(this.codes));
+      }
+      this.setState({
+        isLoading: false
+      });
+    });
+
+    AsyncStorage.getItem('currentCodeIndex').then((data) => {
+      if (data !== null) {
+        var currentCodeIndex = JSON.parse(data);
+        if (!this.codes) {
+          return;
+        }
+        if (currentCodeIndex > this.codes.length - 1) {
+          return;
+        }
+         this.setState({currentCodeValue: this.codes[currentCodeIndex].value});
+      }
+    })
+  }
+
   render() {
 
+    if (this.state.isLoading) {
+      return <View><Text>Loading...</Text></View>;
+    }
+    
     const { navigate } = this.props.navigation;
 
     // Get Dimensions for current window.
