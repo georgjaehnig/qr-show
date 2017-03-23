@@ -59,8 +59,27 @@ class PhoneScreen extends Component {
     return code;
   };
 
-  render() {
+  submit = () => {
     const { navigate } = this.props.navigation;
+    Keyboard.dismiss();
+    if (this.validate()) {
+      // Get current codes.
+      AsyncStorage.getItem('codes').then((data) => {
+        if (data !== null) {
+          var codes = JSON.parse(data);
+          // Create and add new code.
+          var code = this.createCode();
+          codes.push(code);
+          // Save and go back to main then.
+          AsyncStorage.setItem('codes', JSON.stringify(codes)).then((data) => {
+            navigate('Main');
+          });
+        }
+      });
+    }
+  };
+
+  render() {
     return (
       <View style={styles.container}>
         <TextInput
@@ -84,24 +103,7 @@ class PhoneScreen extends Component {
         />
         <Button
           title="Save"
-          onPress={() => { 
-            Keyboard.dismiss();
-            if (this.validate()) {
-              // Get current codes.
-              AsyncStorage.getItem('codes').then((data) => {
-                if (data !== null) {
-                  var codes = JSON.parse(data);
-                  // Create and add new code.
-                  var code = this.createCode();
-                  codes.push(code);
-                  // Save and go back to main then.
-                  AsyncStorage.setItem('codes', JSON.stringify(codes)).then((data) => {
-                    navigate('Main');
-                  });
-                }
-              });
-            }
-          }}
+          onPress={() => this.submit()}
         />
       </View>
     );
