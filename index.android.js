@@ -19,6 +19,9 @@ import {
   StackNavigator,
 } from 'react-navigation';
 
+import styles from './js/styles.js';
+import PhoneScreen from './js/PhoneScreen.js';
+
 class MainScreen extends Component {
 
   static navigationOptions = {
@@ -117,62 +120,8 @@ class AddScreen extends Component {
     );
   }
 }
-
-class PhoneScreen extends Component {
-  static navigationOptions = {
-    title: 'Phone Number',
-  };
-  render() {
-    const { navigate } = this.props.navigation;
-    return (
-      <View style={styles.container}>
-        <TextInput
-          ref='DescriptionInput'
-          style={styles.textInput}
-          autoCapitalize="none"
-          placeholder="Description, e.g.: My home number"
-          onSubmitEditing={() => this.refs.NumberInput.focus() }
-        />
-        <TextInput
-          ref='NumberInput'
-          style={styles.textInput}
-          autoCapitalize="none"
-          placeholder="Phone number, e.g. +123456789"
-          autoCorrect={false}
-          keyboardType="phone-pad"
-        />
-        <Button
-          title="Save"
-          onPress={() => navigate('Main') }
-        />
-      </View>
-    );
-  }
-}
  
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  apptitle: {
-    color: 'white',
-    fontSize: 20,
-  },
-  picker: {
-    alignSelf: 'stretch',
-    margin: 10,
-  },
-  qrcode: {
-    marginBottom: 20,
-  },
-  textInput: {
-    alignSelf: 'stretch',
-    margin: 10,
-  },
-});
+
 
 const QrShow = StackNavigator({
   Main: {screen: MainScreen},
