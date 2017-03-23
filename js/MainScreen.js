@@ -43,7 +43,7 @@ class MainScreen extends Component {
     AsyncStorage.setItem('codeSettings', JSON.stringify(codeSettings));
   };
 
-  pickerValueChange = function(currentCodeValue, currentCodeIndex) {
+  pickerValueChange = function(currentCodeIndex) {
 		this.state.currentCodeIndex = currentCodeIndex;
     this.saveCodeSettings();
     return this.setState(
@@ -110,7 +110,7 @@ class MainScreen extends Component {
         <Picker
           style={styles.picker}
           selectedValue={this.state.currentCodeIndex}
-          onValueChange={(value, itemPosition) => this.pickerValueChange(value, itemPosition)}
+          onValueChange={(value) => this.pickerValueChange(value)}
         >
 
           {this.codes.map((code, index) => <Picker.Item key={index} label={code.label} value={index} />)}
