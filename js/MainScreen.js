@@ -71,7 +71,11 @@ class MainScreen extends Component {
   render() {
 
     if (this.state.isLoading) {
-      return <View><Text>Loading...</Text></View>;
+			return (
+				<View style={styles.container}>
+					<Text>Loading...</Text>
+				</View>
+			);
     }
     
     const { navigate } = this.props.navigation;
