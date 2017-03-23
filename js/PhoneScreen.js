@@ -53,18 +53,16 @@ class PhoneScreen extends Component {
 
   createCode = () => {
     var code = {
-      label: this.state.description,
       value: 'tel:' + this.state.number,
       type:  'Phone',
-      fields: {
-        'URL': this.state.number,
-      }
+      fields: this.state,
     };
     return code;
   };
 
   submit = () => {
     const { navigate } = this.props.navigation;
+
     Keyboard.dismiss();
     if (this.validate()) {
       // Get current codes.

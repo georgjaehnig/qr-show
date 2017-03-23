@@ -26,11 +26,11 @@ class MainScreen extends Component {
   // Default codes.
   codes = [
     {
-      label: 'QR Show on Github',
       value: 'https://github.com/georgjaehnig/qr-show',
       type:  'Url',
       fields: {
-        'URL': 'https://github.com/georgjaehnig/qr-show',
+        description: 'QR Show on Github',
+        url: 'https://github.com/georgjaehnig/qr-show',
       }
     },
   ];
@@ -76,7 +76,7 @@ class MainScreen extends Component {
     }
     Alert.alert(
       'Warning',
-      'Delete ' + this.codes[this.state.currentCodeIndex].label + '?',
+      'Delete ' + this.codes[this.state.currentCodeIndex].fields.description + '?',
       [
         {
           text: 'Cancel', 
@@ -145,7 +145,7 @@ class MainScreen extends Component {
           onValueChange={(value) => this.pickerValueChange(value)}
         >
 
-          {this.codes.map((code, index) => <Picker.Item key={index} label={code.label} value={index} />)}
+          {this.codes.map((code, index) => <Picker.Item key={index} label={code.fields.description} value={index} />)}
 
         </Picker>
         <View style={styles.codeOperations}>
