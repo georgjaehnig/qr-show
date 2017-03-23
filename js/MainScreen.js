@@ -151,6 +151,4 @@ class MainScreen extends Component {
   };
 }
 
-
-
 module.exports = MainScreen;
