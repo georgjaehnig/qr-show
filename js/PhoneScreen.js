@@ -15,6 +15,11 @@ import {
 
 class PhoneScreen extends Component {
 
+  state = {
+    description: '',
+    number: '',
+  };
+
   static navigationOptions = {
     title: 'Phone Number',
   };
@@ -52,11 +57,6 @@ class PhoneScreen extends Component {
       value: 'tel:' + this.state.number,
     };
     return code;
-  };
-
-  state = {
-    description: '',
-    number: '',
   };
 
   render() {
