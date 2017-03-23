@@ -100,6 +100,7 @@ class PhoneScreen extends Component {
           keyboardType="phone-pad"
           onChangeText={(number) => this.setState({number})}
           value={this.state.number}
+          onSubmitEditing={() => this.submit() }
         />
         <Button
           title="Save"
