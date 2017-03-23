@@ -32,12 +32,18 @@ class MainScreen extends Component {
 
   state = {
     isLoading: true,
+    currentCodeIndex: 0,
     currentCodeValue: this.codes[0].value,
   };
 
   pickerValueChange = function(currentCodeValue, currentCodeIndex) {
     AsyncStorage.setItem('currentCodeIndex', JSON.stringify(currentCodeIndex));
-    return this.setState({currentCodeValue: currentCodeValue});
+    return this.setState(
+			{
+				currentCodeValue: currentCodeValue,
+				currentCodeIndex: currentCodeIndex,
+			}
+		);
   }
 
   componentWillMount() {
