@@ -45,7 +45,7 @@ class MainScreen extends Component {
     AsyncStorage.setItem('codeSettings', JSON.stringify(codeSettings));
   };
 
-  pickerValueChange = function(currentCodeIndex) {
+  pickerValueChange = (currentCodeIndex) => {
 		this.state.currentCodeIndex = currentCodeIndex;
     this.saveCodeSettings();
     return this.setState(
