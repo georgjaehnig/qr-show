@@ -7,6 +7,7 @@ import {
   Alert,
   AsyncStorage,
   Button,
+  Keyboard,
   StyleSheet,
   TextInput,
   View,
@@ -84,6 +85,7 @@ class PhoneScreen extends Component {
         <Button
           title="Save"
           onPress={() => { 
+            Keyboard.dismiss();
             if (this.validate()) {
               // Get current codes.
               AsyncStorage.getItem('codes').then((data) => {
