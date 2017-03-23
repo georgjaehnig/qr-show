@@ -129,7 +129,7 @@ class MainScreen extends Component {
           <Button
             style={styles.codeOperation}
             title="Delete"
-            onPress={() => navigate('Add') }
+            onPress={() => this.deleteCode() }
           />
         </View>
         <View style={styles.qrcode}>
