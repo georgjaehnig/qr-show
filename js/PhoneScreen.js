@@ -55,6 +55,10 @@ class PhoneScreen extends Component {
     var code = {
       label: this.state.description,
       value: 'tel:' + this.state.number,
+      type:  'Phone',
+      fields: {
+        'URL': this.state.number,
+      }
     };
     return code;
   };
