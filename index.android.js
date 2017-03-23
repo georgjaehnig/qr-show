@@ -21,6 +21,7 @@ import {
 
 import styles from './js/styles.js';
 import PhoneScreen from './js/PhoneScreen.js';
+import AddScreen from './js/AddScreen.js';
 
 class MainScreen extends Component {
 
@@ -103,25 +104,6 @@ class MainScreen extends Component {
     );
   };
 }
-
-class AddScreen extends Component {
-  static navigationOptions = {
-    title: 'Add QR Code',
-  };
-  render() {
-    const { navigate } = this.props.navigation;
-    return (
-      <View style={styles.container}>
-        <Button
-          title="Phone number"
-          onPress={() => navigate('Phone') }
-        />
-      </View>
-    );
-  }
-}
- 
-
 
 const QrShow = StackNavigator({
   Main: {screen: MainScreen},
