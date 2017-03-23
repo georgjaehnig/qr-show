@@ -36,8 +36,16 @@ class MainScreen extends Component {
     currentCodeValue: this.codes[0].value,
   };
 
+  saveCodeSettings = () => {
+    var codeSettings = {
+      codes: this.codes,
+      currentCodeIndex: this.state.currentCodeIndex,
+    }
+    AsyncStorage.setItem('codeSettings', JSON.stringify(codeSettings));
+  };
+
   pickerValueChange = function(currentCodeValue, currentCodeIndex) {
-    AsyncStorage.setItem('currentCodeIndex', JSON.stringify(currentCodeIndex));
+    this.saveCodeSettings();
     return this.setState(
       {
         currentCodeValue: currentCodeValue,
@@ -47,41 +55,35 @@ class MainScreen extends Component {
   }
 
   componentWillMount() {
-    AsyncStorage.getItem('codes').then((data) => {
+    AsyncStorage.getItem('codeSettings').then((data) => {
       if (data !== null) {
-        this.codes = JSON.parse(data);
+        var codeSettings = JSON.parse(data);
+        this.codes = codeSettings.codes;
+        this.state.currentCodeIndex = codeSettings.currentCodeIndex;
+        this.state.currentCodeValue = this.codes[this.state.currentCodeIndex].value;
       }
       // Save defaults.
       else {
-        AsyncStorage.setItem('codes', JSON.stringify(this.codes));
+        this.saveCodeSettings();
       }
       this.setState({
         isLoading: false
       });
     });
-
-    AsyncStorage.getItem('currentCodeIndex').then((data) => {
-      if (data !== null) {
-        var currentCodeIndex = JSON.parse(data);
-        if (!this.codes) {
-          return;
-        }
-        if (currentCodeIndex > this.codes.length - 1) {
-          return;
-        }
-        this.setState({currentCodeValue: this.codes[currentCodeIndex].value});
-      }
-    })
   }
 
   deleteCode = () => {
-		this.codes.splice(this.state.currentCodeIndex, 1);
-		AsyncStorage.setItem('codes', JSON.stringify(this.codes)).then((currentCodeIndex) => {
-      // Limit index to array length.	
-			currentCodeIndex = Math.min(currentCodeIndex, this.codes.length - 1);
-      this.setState({currentCodeValue: this.codes[currentCodeIndex].value});
-		});
-  };
+    this.codes.splice(this.state.currentCodeIndex, 1);
+		// Limit index to array length.  
+    this.state.currentCodeIndex = Math.min(this.state.currentCodeIndex, this.codes.length - 1);
+    this.saveCodeSettings();
+    return this.setState(
+      {
+        currentCodeIndex: this.state.currentCodeIndex,
+        currentCodeValue: this.codes[this.state.currentCodeIndex].value,
+      }
+    );
+  }
 
   render() {
 

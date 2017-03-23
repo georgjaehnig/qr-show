@@ -64,14 +64,17 @@ class PhoneScreen extends Component {
     Keyboard.dismiss();
     if (this.validate()) {
       // Get current codes.
-      AsyncStorage.getItem('codes').then((data) => {
+      AsyncStorage.getItem('codeSettings').then((data) => {
         if (data !== null) {
-          var codes = JSON.parse(data);
+          var codeSettings = JSON.parse(data);
           // Create and add new code.
           var code = this.createCode();
-          codes.push(code);
+          codeSettings.codes.push(code);
+          // Set index to created code.
+          codeSettings.currentCodeIndex = codeSettings.codes.length - 1;
+          console.log(codeSettings);
           // Save and go back to main then.
-          AsyncStorage.setItem('codes', JSON.stringify(codes)).then((data) => {
+          AsyncStorage.setItem('codeSettings', JSON.stringify(codeSettings)).then((data) => {
             navigate('Main');
           });
         }
