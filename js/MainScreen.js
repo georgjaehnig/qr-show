@@ -80,7 +80,7 @@ class MainScreen extends Component {
       [
         {
           text: 'Cancel', 
-          onPress: () => console.log('Cancel Pressed'), 
+          onPress: () => { },
           style: 'cancel'
         },
         {
