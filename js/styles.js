@@ -19,6 +19,15 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     margin: 10,
   },
+  codeOperations: {
+    flexDirection: 'row',
+    margin: 10,
+  },
+  // TODO: find a way to style buttons.
+  codeOperation: {
+    margin: 30,
+    color: 'black',
+  },
   qrcode: {
     margin: 10,
   },

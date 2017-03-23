@@ -96,6 +96,23 @@ class MainScreen extends Component {
           {this.codes.map((code, index) => <Picker.Item key={index} label={code.label} value={code.value} />)}
 
         </Picker>
+        <View style={styles.codeOperations}>
+          <Button
+            style={styles.codeOperation}
+            title="Open"
+            onPress={() => navigate('Add') }
+          />
+          <Button
+            style={styles.codeOperation}
+            title="Edit"
+            onPress={() => navigate('Add') }
+          />
+          <Button
+            style={styles.codeOperation}
+            title="Delete"
+            onPress={() => navigate('Add') }
+          />
+        </View>
         <View style={styles.qrcode}>
           <QRCode
             value={this.state.currentCodeValue}
