@@ -35,7 +35,7 @@ class MainScreen extends Component {
     currentCodeIndex: 0,
   };
 
-	// Custom:
+  // Custom:
 
   saveCodeSettings = () => {
     var codeSettings = {
@@ -46,7 +46,7 @@ class MainScreen extends Component {
   };
 
   pickerValueChange = (currentCodeIndex) => {
-		this.state.currentCodeIndex = currentCodeIndex;
+    this.state.currentCodeIndex = currentCodeIndex;
     this.saveCodeSettings();
     return this.setState(
       {
@@ -56,14 +56,15 @@ class MainScreen extends Component {
   }
 
   deleteCode = () => {
+
     this.codes.splice(this.state.currentCodeIndex, 1);
-		// Limit index to array length.  
+    // Limit index to array length.  
     this.state.currentCodeIndex = Math.min(this.state.currentCodeIndex, this.codes.length - 1);
     this.saveCodeSettings();
     return this.forceUpdate();
   }
 
-	// Overrides:
+  // Overrides:
 
   componentWillMount() {
     AsyncStorage.getItem('codeSettings').then((data) => {
