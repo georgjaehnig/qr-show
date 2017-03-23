@@ -33,7 +33,6 @@ class MainScreen extends Component {
   state = {
     isLoading: true,
     currentCodeIndex: 0,
-    currentCodeValue: this.codes[0].value,
   };
 
   saveCodeSettings = () => {
@@ -45,10 +44,10 @@ class MainScreen extends Component {
   };
 
   pickerValueChange = function(currentCodeValue, currentCodeIndex) {
+		this.state.currentCodeIndex = currentCodeIndex;
     this.saveCodeSettings();
     return this.setState(
       {
-        currentCodeValue: currentCodeValue,
         currentCodeIndex: currentCodeIndex,
       }
     );
@@ -60,7 +59,8 @@ class MainScreen extends Component {
         var codeSettings = JSON.parse(data);
         this.codes = codeSettings.codes;
         this.state.currentCodeIndex = codeSettings.currentCodeIndex;
-        this.state.currentCodeValue = this.codes[this.state.currentCodeIndex].value;
+        console.log('LOG');
+        console.log(this.state.currentCodeIndex);
       }
       // Save defaults.
       else {
@@ -80,7 +80,6 @@ class MainScreen extends Component {
     return this.setState(
       {
         currentCodeIndex: this.state.currentCodeIndex,
-        currentCodeValue: this.codes[this.state.currentCodeIndex].value,
       }
     );
   }
@@ -110,7 +109,7 @@ class MainScreen extends Component {
       <View style={styles.container}>
         <Picker
           style={styles.picker}
-          selectedValue={this.state.currentCodeValue}
+          selectedValue={this.codes[this.state.currentCodeIndex].value}
           onValueChange={(value, itemPosition) => this.pickerValueChange(value, itemPosition)}
         >
 
@@ -136,7 +135,7 @@ class MainScreen extends Component {
         </View>
         <View style={styles.qrcode}>
           <QRCode
-            value={this.state.currentCodeValue}
+            value={this.codes[this.state.currentCodeIndex].value}
             size={qrCodeSize} />
         </View>
         <Button

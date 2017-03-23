@@ -72,7 +72,6 @@ class PhoneScreen extends Component {
           codeSettings.codes.push(code);
           // Set index to created code.
           codeSettings.currentCodeIndex = codeSettings.codes.length - 1;
-          console.log(codeSettings);
           // Save and go back to main then.
           AsyncStorage.setItem('codeSettings', JSON.stringify(codeSettings)).then((data) => {
             navigate('Main');
