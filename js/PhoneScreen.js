@@ -19,6 +19,8 @@ class PhoneScreen extends Component {
     description: '',
     number: '',
   };
+  
+  currentCodeIndex = null;
 
   static navigationOptions = {
     title: 'Phone Number',
@@ -71,7 +73,14 @@ class PhoneScreen extends Component {
           var codeSettings = JSON.parse(data);
           // Create and add new code.
           var code = this.createCode();
-          codeSettings.codes.push(code);
+          // If new: Append. 
+          if (this.currentCodeIndex === null) {
+            codeSettings.codes.push(code);
+          }
+          // else: Replace.
+          else {
+            codeSettings.codes[this.currentCodeIndex] = code;
+          }
           // Set index to created code.
           codeSettings.currentCodeIndex = codeSettings.codes.length - 1;
           // Save and go back to main then.
@@ -83,10 +92,15 @@ class PhoneScreen extends Component {
     }
   };
 
-  render() {
+  componentWillMount() {
+    // Set params.
     if (this.props.navigation.state.params) {
       this.state = this.props.navigation.state.params.fields;
+      this.currentCodeIndex = this.props.navigation.state.params.currentCodeIndex; 
     }
+  };
+
+  render() {
     return (
       <View style={styles.container}>
         <TextInput

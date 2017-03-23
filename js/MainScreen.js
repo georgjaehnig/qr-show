@@ -159,8 +159,11 @@ class MainScreen extends Component {
             title="Edit"
             onPress={() => { 
               navigate(
-                this.codes[this.state.currentCodeIndex].type, 
-                this.codes[this.state.currentCodeIndex]
+                this.codes[this.state.currentCodeIndex].type,
+                {
+                  fields: this.codes[this.state.currentCodeIndex].fields,
+                  currentCodeIndex: this.state.currentCodeIndex,
+                }
               ) 
             }}
           />
