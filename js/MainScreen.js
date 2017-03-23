@@ -109,11 +109,11 @@ class MainScreen extends Component {
       <View style={styles.container}>
         <Picker
           style={styles.picker}
-          selectedValue={this.codes[this.state.currentCodeIndex].value}
+          selectedValue={this.state.currentCodeIndex}
           onValueChange={(value, itemPosition) => this.pickerValueChange(value, itemPosition)}
         >
 
-          {this.codes.map((code, index) => <Picker.Item key={index} label={code.label} value={code.value} />)}
+          {this.codes.map((code, index) => <Picker.Item key={index} label={code.label} value={index} />)}
 
         </Picker>
         <View style={styles.codeOperations}>
