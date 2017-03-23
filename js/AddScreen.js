@@ -1,13 +1,12 @@
 'use strict';
 
 import React, { Component } from 'react'
+import styles from './styles.js';
 
 import {
 	Button,
   View,
 } from 'react-native';
-
-import styles from './styles.js';
 
 class AddScreen extends Component {
   static navigationOptions = {

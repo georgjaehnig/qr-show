@@ -1,6 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react'
+import styles from './styles.js';
 
 import {
 	Button,
@@ -8,8 +9,6 @@ import {
   TextInput,
   View,
 } from 'react-native';
-
-import styles from './styles.js';
 
 class PhoneScreen extends Component {
   static navigationOptions = {
