@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import styles from './styles.js';
 
 import {
+  Alert,
   AsyncStorage,
   Button,
   Dimensions,
@@ -56,12 +57,27 @@ class MainScreen extends Component {
   }
 
   deleteCode = () => {
-
-    this.codes.splice(this.state.currentCodeIndex, 1);
-    // Limit index to array length.  
-    this.state.currentCodeIndex = Math.min(this.state.currentCodeIndex, this.codes.length - 1);
-    this.saveCodeSettings();
-    return this.forceUpdate();
+    Alert.alert(
+      'Warning',
+      'Delete ' + this.codes[this.state.currentCodeIndex].label + '?',
+      [
+        {
+          text: 'Cancel', 
+          onPress: () => console.log('Cancel Pressed'), 
+          style: 'cancel'
+        },
+        {
+          text: 'OK', 
+          onPress: () => {
+            this.codes.splice(this.state.currentCodeIndex, 1);
+            // Limit index to array length.  
+            this.state.currentCodeIndex = Math.min(this.state.currentCodeIndex, this.codes.length - 1);
+            this.saveCodeSettings();
+            return this.forceUpdate();
+          },
+        },
+      ],
+    );
   }
 
   // Overrides:
