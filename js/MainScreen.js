@@ -39,11 +39,11 @@ class MainScreen extends Component {
   pickerValueChange = function(currentCodeValue, currentCodeIndex) {
     AsyncStorage.setItem('currentCodeIndex', JSON.stringify(currentCodeIndex));
     return this.setState(
-			{
-				currentCodeValue: currentCodeValue,
-				currentCodeIndex: currentCodeIndex,
-			}
-		);
+      {
+        currentCodeValue: currentCodeValue,
+        currentCodeIndex: currentCodeIndex,
+      }
+    );
   }
 
   componentWillMount() {
