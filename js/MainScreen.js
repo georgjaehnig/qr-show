@@ -57,6 +57,19 @@ class MainScreen extends Component {
   }
 
   deleteCode = () => {
+    if (this.codes.length < 2) {
+      Alert.alert(
+        'Error',
+        'At least 1 code has to remain always.',
+        [
+          {
+            text: 'OK', 
+            onPress: () => { },
+          },
+        ],
+      );
+      return;
+    }
     Alert.alert(
       'Warning',
       'Delete ' + this.codes[this.state.currentCodeIndex].label + '?',
