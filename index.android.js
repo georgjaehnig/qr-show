@@ -93,7 +93,7 @@ class MainScreen extends Component {
             size={qrCodeSize} />
         </View>
         <Button
-          title="Add"
+          title="Add new"
           onPress={() => navigate('Add') }
         />
       </View>
