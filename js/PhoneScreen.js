@@ -84,6 +84,9 @@ class PhoneScreen extends Component {
   };
 
   render() {
+    if (this.props.navigation.state.params) {
+      this.state = this.props.navigation.state.params.fields;
+    }
     return (
       <View style={styles.container}>
         <TextInput

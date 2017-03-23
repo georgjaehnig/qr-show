@@ -157,7 +157,12 @@ class MainScreen extends Component {
           <Button
             style={styles.codeOperation}
             title="Edit"
-            onPress={() => navigate('Add') }
+            onPress={() => { 
+              navigate(
+                this.codes[this.state.currentCodeIndex].type, 
+                this.codes[this.state.currentCodeIndex]
+              ) 
+            }}
           />
           <Button
             style={styles.codeOperation}
