@@ -60,11 +60,7 @@ class MainScreen extends Component {
 		// Limit index to array length.  
     this.state.currentCodeIndex = Math.min(this.state.currentCodeIndex, this.codes.length - 1);
     this.saveCodeSettings();
-    return this.setState(
-      {
-        currentCodeIndex: this.state.currentCodeIndex,
-      }
-    );
+    return this.forceUpdate();
   }
 
 	// Overrides:
