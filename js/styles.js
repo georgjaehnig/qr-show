@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   qrcode: {
-    marginBottom: 20,
+    margin: 10,
   },
   textInput: {
     alignSelf: 'stretch',
