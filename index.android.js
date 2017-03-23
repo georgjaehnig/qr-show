@@ -7,4 +7,3 @@ import {
 import QrShow from './js/QrShow.js';
 
 AppRegistry.registerComponent('QrShow', () => QrShow);
-
