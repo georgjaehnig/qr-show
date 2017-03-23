@@ -63,10 +63,19 @@ class MainScreen extends Component {
         if (currentCodeIndex > this.codes.length - 1) {
           return;
         }
-         this.setState({currentCodeValue: this.codes[currentCodeIndex].value});
+        this.setState({currentCodeValue: this.codes[currentCodeIndex].value});
       }
     })
   }
+
+  deleteCode = () => {
+		this.codes.splice(this.state.currentCodeIndex, 1);
+		AsyncStorage.setItem('codes', JSON.stringify(this.codes)).then((currentCodeIndex) => {
+      // Limit index to array length.	
+			currentCodeIndex = Math.min(currentCodeIndex, this.codes.length - 1);
+      this.setState({currentCodeValue: this.codes[currentCodeIndex].value});
+		});
+  };
 
   render() {
 
