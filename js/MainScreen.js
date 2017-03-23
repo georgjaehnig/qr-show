@@ -45,7 +45,7 @@ class MainScreen extends Component {
       if (data !== null) {
         this.codes = JSON.parse(data);
       }
-			// Save defaults.
+      // Save defaults.
       else {
         AsyncStorage.setItem('codes', JSON.stringify(this.codes));
       }
