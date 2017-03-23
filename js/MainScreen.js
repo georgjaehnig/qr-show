@@ -35,6 +35,8 @@ class MainScreen extends Component {
     currentCodeIndex: 0,
   };
 
+	// Custom:
+
   saveCodeSettings = () => {
     var codeSettings = {
       codes: this.codes,
@@ -64,6 +66,8 @@ class MainScreen extends Component {
       }
     );
   }
+
+	// Overrides:
 
   componentWillMount() {
     AsyncStorage.getItem('codeSettings').then((data) => {
