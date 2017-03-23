@@ -53,6 +53,18 @@ class MainScreen extends Component {
     );
   }
 
+  deleteCode = () => {
+    this.codes.splice(this.state.currentCodeIndex, 1);
+		// Limit index to array length.  
+    this.state.currentCodeIndex = Math.min(this.state.currentCodeIndex, this.codes.length - 1);
+    this.saveCodeSettings();
+    return this.setState(
+      {
+        currentCodeIndex: this.state.currentCodeIndex,
+      }
+    );
+  }
+
   componentWillMount() {
     AsyncStorage.getItem('codeSettings').then((data) => {
       if (data !== null) {
@@ -70,18 +82,6 @@ class MainScreen extends Component {
         isLoading: false
       });
     });
-  }
-
-  deleteCode = () => {
-    this.codes.splice(this.state.currentCodeIndex, 1);
-		// Limit index to array length.  
-    this.state.currentCodeIndex = Math.min(this.state.currentCodeIndex, this.codes.length - 1);
-    this.saveCodeSettings();
-    return this.setState(
-      {
-        currentCodeIndex: this.state.currentCodeIndex,
-      }
-    );
   }
 
   render() {
