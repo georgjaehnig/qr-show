@@ -37,7 +37,7 @@ class WifiScreen extends EditScreen {
 
   createCode = () => {
     var code = {
-      value: `WIFI:S:${this.state.ssid};T:{this.state.type};P:{this.state.password};H:{this.state.hidden}`,
+      value: `WIFI:S:${this.state.ssid};T:${this.state.type};P:${this.state.password};H:${this.state.hidden}`,
       type:  'Wifi',
       fields: this.state,
     };
