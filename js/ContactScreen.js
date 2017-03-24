@@ -7,7 +7,6 @@ import {
   Button,
   ScrollView,
   TextInput,
-  View,
 } from 'react-native';
 
 import EditScreen from './EditScreen.js';

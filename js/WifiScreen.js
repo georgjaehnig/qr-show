@@ -8,7 +8,6 @@ import {
   Picker,
   ScrollView,
   TextInput,
-  View,
 } from 'react-native';
 
 import EditScreen from './EditScreen.js';
