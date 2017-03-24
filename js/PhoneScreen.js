@@ -76,13 +76,13 @@ class PhoneScreen extends Component {
           // If new: Append. 
           if (this.currentCodeIndex === null) {
             codeSettings.codes.push(code);
+            // Set index to created code.
+            codeSettings.currentCodeIndex = codeSettings.codes.length - 1;
           }
           // else: Replace.
           else {
             codeSettings.codes[this.currentCodeIndex] = code;
           }
-          // Set index to created code.
-          codeSettings.currentCodeIndex = codeSettings.codes.length - 1;
           // Save and go back to main then.
           AsyncStorage.setItem('codeSettings', JSON.stringify(codeSettings)).then((data) => {
             navigate('Main');
