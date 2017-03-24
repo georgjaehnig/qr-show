@@ -15,16 +15,11 @@ class TextScreen extends EditScreen {
 
   state = {
     description: '',
-    number: '',
+    text: '',
   };
   
   static navigationOptions = {
-    title: 'Text Number',
-  };
-
-  validateNumber = (number) => {
-    var re = /^[0-9+]+$/;
-    return re.test(number);
+    title: 'Text',
   };
 
   validate = () => {
@@ -32,8 +27,8 @@ class TextScreen extends EditScreen {
       this.showError('Description must not be empty.');
       return false;
     }
-    if (!this.validateNumber(this.state.number)) {
-      this.showError('Number must only contain 0-9 and +.');
+    if (this.state.text == '') {
+      this.showError('Text must not be empty.');
       return false;
     }
     return true;
@@ -41,7 +36,7 @@ class TextScreen extends EditScreen {
 
   createCode = () => {
     var code = {
-      value: 'tel:' + this.state.number,
+      value: this.state.text,
       type:  'Text',
       fields: this.state,
     };
@@ -55,19 +50,19 @@ class TextScreen extends EditScreen {
           ref='DescriptionInput'
           style={styles.textInput}
           autoCapitalize="none"
-          placeholder="Description, e.g.: My home number"
+          placeholder="Description, e.g. My free text"
           onChangeText={(description) => this.setState({description})}
           value={this.state.description}
-          onSubmitEditing={() => this.refs.NumberInput.focus() }
+          onSubmitEditing={() => this.refs.TextInput.focus() }
         />
         <TextInput
-          ref='NumberInput'
+          ref='TextInput'
           style={styles.textInput}
           autoCapitalize="none"
-          placeholder="Text number, e.g. +123456789"
+          placeholder="Text, e.g. Hello World"
           autoCorrect={false}
-          onChangeText={(number) => this.setState({number})}
-          value={this.state.number}
+          onChangeText={(text) => this.setState({text})}
+          value={this.state.text}
           onSubmitEditing={() => this.submit() }
         />
         <Button
