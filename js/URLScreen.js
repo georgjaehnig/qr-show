@@ -22,14 +22,6 @@ class URLScreen extends EditScreen {
     title: 'URL',
   };
 
-  validate = () => {
-    if (this.state.description == '') {
-      this.showError('Description must not be empty.');
-      return false;
-    }
-    return true;
-  };
-
   createCode = () => {
     var code = {
       value: this.state.url,

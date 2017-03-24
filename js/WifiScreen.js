@@ -26,14 +26,6 @@ class WifiScreen extends EditScreen {
     title: 'Wifi network',
   };
 
-  validate = () => {
-    if (this.state.description == '') {
-      this.showError('Description must not be empty.');
-      return false;
-    }
-    return true;
-  };
-
   createCode = () => {
     var code = {
       value: `WIFI:S:${this.state.ssid};T:${this.state.type};P:${this.state.password};H:${this.state.hidden}`,

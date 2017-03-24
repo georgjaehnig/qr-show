@@ -22,18 +22,6 @@ class TextScreen extends EditScreen {
     title: 'Text',
   };
 
-  validate = () => {
-    if (this.state.description == '') {
-      this.showError('Description must not be empty.');
-      return false;
-    }
-    if (this.state.text == '') {
-      this.showError('Text must not be empty.');
-      return false;
-    }
-    return true;
-  };
-
   createCode = () => {
     var code = {
       value: this.state.text,

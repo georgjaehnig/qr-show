@@ -32,6 +32,14 @@ class EditScreen extends Component {
     }
   };
 
+  validate = () => {
+    if (this.state.description == '') {
+      this.showError('Description must not be empty.');
+      return false;
+    }
+    return true;
+  };
+  
   submit = () => {
     const { navigate } = this.props.navigation;
 
