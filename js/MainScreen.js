@@ -151,11 +151,6 @@ class MainScreen extends Component {
         <View style={styles.codeOperations}>
           <Button
             style={styles.codeOperation}
-            title="Open"
-            onPress={() => navigate('Add') }
-          />
-          <Button
-            style={styles.codeOperation}
             title="Edit"
             onPress={() => { 
               navigate(
