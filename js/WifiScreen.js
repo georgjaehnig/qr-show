@@ -63,12 +63,24 @@ class WifiScreen extends EditScreen {
           placeholder="SSID"
           onChangeText={(ssid) => this.setState({ssid})}
           value={this.state.ssid}
-          onSubmitEditing={() => this.refs.PasswordInput.focus() }
+          onSubmitEditing={() => { 
+            // Focus to Password only if not nopass.
+            if (this.state.type != 'nopass') {
+              this.refs.PasswordInput.focus();
+            }
+          }}
         />
         <Picker
+          ref='TypeInput'
           style={styles.picker}
           selectedValue={this.state.type}
-          onValueChange={(type) => this.setState({type})}
+          onValueChange={(type) => { 
+            // Clear password if set nopass.
+            if (type == 'nopass') {
+              this.setState({password: ''})
+            }
+            this.setState({type})
+          }}
         >
           <Picker.Item key="1" label="WPA/WPA2" value="WPA" />
           <Picker.Item key="2" label="WEP" value="WEP" />
@@ -82,7 +94,6 @@ class WifiScreen extends EditScreen {
             placeholder="Password"
             onChangeText={(password) => this.setState({password})}
             value={this.state.password}
-            onSubmitEditing={() => this.submit() }
           />
         }
         <Picker
