@@ -17,7 +17,8 @@ const styles = StyleSheet.create({
   },
   picker: {
     alignSelf: 'stretch',
-    margin: 10,
+    marginLeft: 10,
+    marginRight: 10,
   },
   codeOperations: {
     flexDirection: 'row',
@@ -33,7 +34,8 @@ const styles = StyleSheet.create({
   },
   textInput: {
     alignSelf: 'stretch',
-    margin: 10,
+    marginLeft: 10,
+    marginRight: 10,
   },
   textInputMultiline: {
     alignSelf: 'stretch',
