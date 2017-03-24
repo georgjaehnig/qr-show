@@ -27,7 +27,7 @@ class ContactScreen extends EditScreen {
   };
 
   validateNumber = (number) => {
-    var re = /^[0-9+]+$/;
+    var re = /^[0-9+]*$/;
     return re.test(number);
   };
 
