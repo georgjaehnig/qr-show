@@ -32,6 +32,10 @@ class AddScreen extends Component {
           title="Wifi network"
           onPress={() => navigate('Wifi') }
         />
+        <Button
+          title="URL"
+          onPress={() => navigate('URL') }
+        />
       </View>
     );
   }

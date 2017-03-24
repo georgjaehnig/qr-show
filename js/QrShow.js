@@ -10,6 +10,7 @@ import AddScreen      from './AddScreen.js';
 import TextScreen     from './TextScreen.js';
 import ContactScreen  from './ContactScreen.js';
 import WifiScreen     from './WifiScreen.js';
+import URLScreen      from './URLScreen.js';
 
 const QrShow = StackNavigator({
   Main:    {screen: MainScreen},
@@ -18,6 +19,7 @@ const QrShow = StackNavigator({
   Text:    {screen: TextScreen},
   Contact: {screen: ContactScreen},
   Wifi:    {screen: WifiScreen},
+  URL:     {screen: URLScreen},
 }); 
 
 module.exports = QrShow;
