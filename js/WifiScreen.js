@@ -37,7 +37,7 @@ class WifiScreen extends EditScreen {
 
   render() {
     return (
-      <ScrollView>
+      <ScrollView style={styles.scrollView}>
         <TextInput
           ref='DescriptionInput'
           style={styles.textInput}

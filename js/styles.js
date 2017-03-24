@@ -11,6 +11,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  scrollView: {
+    backgroundColor: 'white',
+  },
   apptitle: {
     color: 'white',
     fontSize: 20,
