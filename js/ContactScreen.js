@@ -5,6 +5,7 @@ import styles from './styles.js';
 
 import {
   Button,
+  ScrollView,
   TextInput,
   View,
 } from 'react-native';
@@ -15,7 +16,10 @@ class ContactScreen extends EditScreen {
 
   state = {
     description: '',
+    firstName: '',
+    lastName: '',
     number: '',
+    email: '',
   };
   
   static navigationOptions = {
@@ -41,7 +45,12 @@ class ContactScreen extends EditScreen {
 
   createCode = () => {
     var code = {
-      value: 'tel:' + this.state.number,
+      value: `BEGIN:VCARD
+VERSION:2.1
+N:${this.state.lastName};${this.state.firstName}
+TEL:${this.state.number}
+EMAIL:${this.state.email}
+END:VCARD`,
       type:  'Contact',
       fields: this.state,
     };
@@ -50,14 +59,32 @@ class ContactScreen extends EditScreen {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView>
         <TextInput
           ref='DescriptionInput'
           style={styles.textInput}
           autoCapitalize="none"
-          placeholder="Description, e.g.: My home number"
+          placeholder="Description, e.g.: My contact"
           onChangeText={(description) => this.setState({description})}
           value={this.state.description}
+          onSubmitEditing={() => this.refs.FirstNameInput.focus() }
+        />
+        <TextInput
+          ref='FirstNameInput'
+          style={styles.textInput}
+          autoCapitalize="none"
+          placeholder="First Name"
+          onChangeText={(firstName) => this.setState({firstName})}
+          value={this.state.firstName}
+          onSubmitEditing={() => this.refs.LastNameInput.focus() }
+        />
+        <TextInput
+          ref='LastNameInput'
+          style={styles.textInput}
+          autoCapitalize="none"
+          placeholder="Last Name"
+          onChangeText={(lastName) => this.setState({lastName})}
+          value={this.state.lastName}
           onSubmitEditing={() => this.refs.NumberInput.focus() }
         />
         <TextInput
@@ -69,13 +96,24 @@ class ContactScreen extends EditScreen {
           keyboardType="phone-pad"
           onChangeText={(number) => this.setState({number})}
           value={this.state.number}
+          onSubmitEditing={() => this.refs.EmailInput.focus() }
+        />
+        <TextInput
+          ref='EmailInput'
+          style={styles.textInput}
+          autoCapitalize="none"
+          placeholder="Email address, e.g. john@example.com"
+          autoCorrect={false}
+          keyboardType="email-address"
+          onChangeText={(email) => this.setState({email})}
+          value={this.state.email}
           onSubmitEditing={() => this.submit() }
         />
         <Button
           title="Save"
           onPress={() => this.submit()}
         />
-      </View>
+      </ScrollView>
     );
   };
 
