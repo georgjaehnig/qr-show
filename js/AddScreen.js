@@ -28,6 +28,10 @@ class AddScreen extends Component {
           title="Contact"
           onPress={() => navigate('Contact') }
         />
+        <Button
+          title="Wifi network"
+          onPress={() => navigate('Wifi') }
+        />
       </View>
     );
   }
