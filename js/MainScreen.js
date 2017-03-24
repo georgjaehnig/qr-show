@@ -145,7 +145,7 @@ class MainScreen extends Component {
           onValueChange={(value) => this.pickerValueChange(value)}
         >
 
-          {this.codes.map((code, index) => <Picker.Item key={index} label={code.fields.description} value={index} />)}
+          {this.codes.map((code, index) => <Picker.Item key={index} label={code.type + ': ' +code.fields.description} value={index} />)}
 
         </Picker>
         <View style={styles.codeOperations}>
