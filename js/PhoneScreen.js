@@ -5,8 +5,8 @@ import styles from './styles.js';
 
 import {
   Button,
+  ScrollView,
   TextInput,
-  View,
 } from 'react-native';
 
 import EditScreen from './EditScreen.js';
@@ -50,7 +50,7 @@ class PhoneScreen extends EditScreen {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView>
         <TextInput
           ref='DescriptionInput'
           style={styles.textInput}
@@ -75,7 +75,7 @@ class PhoneScreen extends EditScreen {
           title="Save"
           onPress={() => this.submit()}
         />
-      </View>
+      </ScrollView>
     );
   };
 
