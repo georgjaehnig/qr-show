@@ -27,7 +27,7 @@ class MainScreen extends Component {
   codes = [
     {
       value: 'https://github.com/georgjaehnig/qr-show',
-      type:  'Url',
+      type:  'URL',
       fields: {
         description: 'QR Show on Github',
         url: 'https://github.com/georgjaehnig/qr-show',
