@@ -10,7 +10,7 @@ import {
 
 class AddScreen extends Component {
   static navigationOptions = {
-    title: 'Add QR Code',
+    title: 'Add new QR code',
   };
   render() {
     const { navigate } = this.props.navigation;
