@@ -54,7 +54,7 @@ class WifiScreen extends EditScreen {
           placeholder="Description, e.g.: My contact"
           onChangeText={(description) => this.setState({description})}
           value={this.state.description}
-          onSubmitEditing={() => this.refs.FirstNameInput.focus() }
+          onSubmitEditing={() => this.refs.SsidInput.focus() }
         />
         <TextInput
           ref='SsidInput'
