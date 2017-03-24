@@ -57,9 +57,10 @@ class TextScreen extends EditScreen {
         />
         <TextInput
           ref='TextInput'
-          style={styles.textInput}
+          style={styles.textInputMultiline}
           autoCapitalize="none"
           placeholder="Text, e.g. Hello World"
+          multiline={true}
           autoCorrect={false}
           onChangeText={(text) => this.setState({text})}
           value={this.state.text}

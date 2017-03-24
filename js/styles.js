@@ -35,6 +35,11 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     margin: 10,
   },
+  textInputMultiline: {
+    alignSelf: 'stretch',
+    margin: 10,
+    height: 200,
+  },
 });
 
 module.exports = styles;
