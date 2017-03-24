@@ -4,36 +4,22 @@ import React, { Component } from 'react'
 import styles from './styles.js';
 
 import {
-  Alert,
-  AsyncStorage,
   Button,
-  Keyboard,
-  StyleSheet,
   TextInput,
   View,
 } from 'react-native';
 
-class PhoneScreen extends Component {
+import EditScreen from './EditScreen.js';
+
+class PhoneScreen extends EditScreen {
 
   state = {
     description: '',
     number: '',
   };
   
-  currentCodeIndex = null;
-
   static navigationOptions = {
     title: 'Phone Number',
-  };
-
-  showError = function(message) {
-    Alert.alert(
-      'Error',
-      message,
-      [
-        {text: 'OK'},
-      ],
-    );
   };
 
   validateNumber = (number) => {
@@ -60,44 +46,6 @@ class PhoneScreen extends Component {
       fields: this.state,
     };
     return code;
-  };
-
-  submit = () => {
-    const { navigate } = this.props.navigation;
-
-    Keyboard.dismiss();
-    if (this.validate()) {
-      // Get current codes.
-      AsyncStorage.getItem('codeSettings').then((data) => {
-        if (data !== null) {
-          var codeSettings = JSON.parse(data);
-          // Create and add new code.
-          var code = this.createCode();
-          // If new: Append. 
-          if (this.currentCodeIndex === null) {
-            codeSettings.codes.push(code);
-            // Set index to created code.
-            codeSettings.currentCodeIndex = codeSettings.codes.length - 1;
-          }
-          // else: Replace.
-          else {
-            codeSettings.codes[this.currentCodeIndex] = code;
-          }
-          // Save and go back to main then.
-          AsyncStorage.setItem('codeSettings', JSON.stringify(codeSettings)).then((data) => {
-            navigate('Main');
-          });
-        }
-      });
-    }
-  };
-
-  componentWillMount() {
-    // Set params.
-    if (this.props.navigation.state.params) {
-      this.state = this.props.navigation.state.params.fields;
-      this.currentCodeIndex = this.props.navigation.state.params.currentCodeIndex; 
-    }
   };
 
   render() {
@@ -131,9 +79,6 @@ class PhoneScreen extends Component {
     );
   };
 
-  componentDidMount() {
-    this.refs.DescriptionInput.focus();
-  };
 }
 
 module.exports = PhoneScreen;
