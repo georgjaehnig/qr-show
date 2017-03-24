@@ -66,7 +66,6 @@ class TextScreen extends EditScreen {
           autoCapitalize="none"
           placeholder="Text number, e.g. +123456789"
           autoCorrect={false}
-          keyboardType="phone-pad"
           onChangeText={(number) => this.setState({number})}
           value={this.state.number}
           onSubmitEditing={() => this.submit() }

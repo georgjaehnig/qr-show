@@ -20,6 +20,10 @@ class AddScreen extends Component {
           title="Phone number"
           onPress={() => navigate('Phone') }
         />
+        <Button
+          title="Text"
+          onPress={() => navigate('Text') }
+        />
       </View>
     );
   }
