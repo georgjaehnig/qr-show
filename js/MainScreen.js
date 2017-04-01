@@ -95,7 +95,9 @@ class MainScreen extends Component {
 
   // Overrides:
 
-  componentWillMount() {
+  constructor(props) {
+    super(props);
+    //console.log('constructor');
     AsyncStorage.getItem('codeSettings').then((data) => {
       if (data !== null) {
         var codeSettings = JSON.parse(data);
