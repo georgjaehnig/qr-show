@@ -65,9 +65,7 @@ class EditScreen extends Component {
           // Save and go back to main then.
           AsyncStorage.setItem('codeSettings', JSON.stringify(codeSettings)).then((data) => {
             this.parent.codes = codeSettings.codes;
-            this.parent.setState({
-              currentCodeIndex: codeSettings.currentCodeIndex
-            });
+            this.parent.setState({ currentCodeIndex: codeSettings.currentCodeIndex });
             this.props.navigation.goBack();
           });
         }
