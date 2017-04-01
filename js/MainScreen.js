@@ -50,12 +50,6 @@ class MainScreen extends Component {
     AsyncStorage.setItem('codeSettings', JSON.stringify(codeSettings));
   };
 
-  pickerValueChange = (currentCodeIndex) => {
-    this.state.currentCodeIndex = currentCodeIndex;
-    this.saveCodeSettings();
-    return this.setState({ currentCodeIndex: currentCodeIndex });
-  }
-
   deleteCode = () => {
     if (this.codes.length < 2) {
       Alert.alert(
@@ -138,7 +132,9 @@ class MainScreen extends Component {
         <Picker
           style={styles.picker}
           selectedValue={this.state.currentCodeIndex}
-          onValueChange={(value) => this.pickerValueChange(value)}
+          onValueChange={(currentCodeIndex) => {
+            this.setState({ currentCodeIndex });
+          }}
         >
 
           {this.codes.map((code, index) => <Picker.Item key={index} label={code.type + ': ' +code.fields.description} value={index} />)}
@@ -177,6 +173,9 @@ class MainScreen extends Component {
       </View>
     );
   };
+  componentDidUpdate() {
+    this.saveCodeSettings();
+  }
 }
 
 module.exports = MainScreen;
