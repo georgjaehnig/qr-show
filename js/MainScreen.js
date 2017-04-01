@@ -108,6 +108,8 @@ class MainScreen extends Component {
 
   render() {
 
+    console.log("index: " + this.state.currentCodeIndex);
+
     if (this.state.isLoading) {
       return (
         <View style={styles.container}>
