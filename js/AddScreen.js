@@ -18,23 +18,23 @@ class AddScreen extends Component {
       <View style={styles.container}>
         <Button
           title="Phone number"
-          onPress={() => navigate('Phone') }
+          onPress={() => navigate('Phone', {isNew: true} ) }
         />
         <Button
           title="Text"
-          onPress={() => navigate('Text') }
+          onPress={() => navigate('Text', {isNew: true} ) }
         />
         <Button
           title="Contact"
-          onPress={() => navigate('Contact') }
+          onPress={() => navigate('Contact', {isNew: true} ) }
         />
         <Button
           title="Wifi network"
-          onPress={() => navigate('Wifi') }
+          onPress={() => navigate('Wifi', {isNew: true} ) }
         />
         <Button
           title="URL"
-          onPress={() => navigate('URL') }
+          onPress={() => navigate('URL', {isNew: true} ) }
         />
       </View>
     );

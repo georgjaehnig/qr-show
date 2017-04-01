@@ -12,7 +12,7 @@ import {
 
 class EditScreen extends Component {
 
-  currentCodeIndex = null;
+  isNew = false;
 
   showError = function(message) {
     Alert.alert(
@@ -28,7 +28,8 @@ class EditScreen extends Component {
     // Set params.
     if (this.props.navigation.state.params) {
       this.state = this.props.navigation.state.params.fields;
-      this.currentCodeIndex = this.props.navigation.state.params.currentCodeIndex; 
+      this.isNew = this.props.navigation.state.params.isNew; 
+      this.parent = this.props.navigation.state.params.parent;
     }
   };
 
@@ -52,14 +53,14 @@ class EditScreen extends Component {
           // Create and add new code.
           var code = this.createCode();
           // If new: Append. 
-          if (this.currentCodeIndex === null) {
+          if (this.isNew) {
             codeSettings.codes.push(code);
             // Set index to created code.
             codeSettings.currentCodeIndex = codeSettings.codes.length - 1;
           }
           // else: Replace.
           else {
-            codeSettings.codes[this.currentCodeIndex] = code;
+            codeSettings.codes[codeSettings.currentCodeIndex] = code;
           }
           // Save and go back to main then.
           AsyncStorage.setItem('codeSettings', JSON.stringify(codeSettings)).then((data) => {

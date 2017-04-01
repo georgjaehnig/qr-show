@@ -152,6 +152,7 @@ class MainScreen extends Component {
                 {
                   fields: this.codes[this.state.currentCodeIndex].fields,
                   currentCodeIndex: this.state.currentCodeIndex,
+                  parent: this,
                 }
               ) 
             }}
