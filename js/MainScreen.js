@@ -53,11 +53,7 @@ class MainScreen extends Component {
   pickerValueChange = (currentCodeIndex) => {
     this.state.currentCodeIndex = currentCodeIndex;
     this.saveCodeSettings();
-    return this.setState(
-      {
-        currentCodeIndex: currentCodeIndex,
-      }
-    );
+    return this.setState({ currentCodeIndex: currentCodeIndex });
   }
 
   deleteCode = () => {
