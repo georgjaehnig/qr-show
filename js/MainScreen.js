@@ -106,9 +106,7 @@ class MainScreen extends Component {
       else {
         this.saveCodeSettings();
       }
-      this.setState({
-        isLoading: false
-      });
+      this.setState({ isLoading: false });
     });
   }
 
