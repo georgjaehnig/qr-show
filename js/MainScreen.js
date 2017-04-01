@@ -44,7 +44,7 @@ class MainScreen extends Component {
 
   saveCodeSettings = () => {
     var codeSettings = {
-      codes: this.state.codes,
+      codes: this.codes,
       currentCodeIndex: this.state.currentCodeIndex,
     }
     AsyncStorage.setItem('codeSettings', JSON.stringify(codeSettings));
@@ -61,7 +61,7 @@ class MainScreen extends Component {
   }
 
   deleteCode = () => {
-    if (this.state.codes.length < 2) {
+    if (this.codes.length < 2) {
       Alert.alert(
         'Error',
         'At least 1 code has to remain always.',
@@ -76,7 +76,7 @@ class MainScreen extends Component {
     }
     Alert.alert(
       'Warning',
-      'Delete ' + this.state.codes[this.state.currentCodeIndex].fields.description + '?',
+      'Delete ' + this.codes[this.state.currentCodeIndex].fields.description + '?',
       [
         {
           text: 'Cancel', 
@@ -86,9 +86,9 @@ class MainScreen extends Component {
         {
           text: 'OK', 
           onPress: () => {
-            this.state.codes.splice(this.state.currentCodeIndex, 1);
+            this.codes.splice(this.state.currentCodeIndex, 1);
             // Limit index to array length.  
-            this.state.currentCodeIndex = Math.min(this.state.currentCodeIndex, this.state.codes.length - 1);
+            this.state.currentCodeIndex = Math.min(this.state.currentCodeIndex, this.codes.length - 1);
             this.saveCodeSettings();
             return this.forceUpdate();
           },
@@ -103,7 +103,7 @@ class MainScreen extends Component {
     AsyncStorage.getItem('codeSettings').then((data) => {
       if (data !== null) {
         var codeSettings = JSON.parse(data);
-        this.state.codes = codeSettings.codes;
+        this.codes = codeSettings.codes;
         this.state.currentCodeIndex = codeSettings.currentCodeIndex;
       }
       // Save defaults.
@@ -145,7 +145,7 @@ class MainScreen extends Component {
           onValueChange={(value) => this.pickerValueChange(value)}
         >
 
-          {this.state.codes.map((code, index) => <Picker.Item key={index} label={code.type + ': ' +code.fields.description} value={index} />)}
+          {this.codes.map((code, index) => <Picker.Item key={index} label={code.type + ': ' +code.fields.description} value={index} />)}
 
         </Picker>
         <View style={styles.codeOperations}>
@@ -154,9 +154,9 @@ class MainScreen extends Component {
             title="Edit"
             onPress={() => { 
               navigate(
-                this.state.codes[this.state.currentCodeIndex].type,
+                this.codes[this.state.currentCodeIndex].type,
                 {
-                  fields: this.state.codes[this.state.currentCodeIndex].fields,
+                  fields: this.codes[this.state.currentCodeIndex].fields,
                   currentCodeIndex: this.state.currentCodeIndex,
                 }
               ) 
@@ -170,7 +170,7 @@ class MainScreen extends Component {
         </View>
         <View style={styles.qrcode}>
           <QRCode
-            value={this.state.codes[this.state.currentCodeIndex].value}
+            value={this.codes[this.state.currentCodeIndex].value}
             size={qrCodeSize} />
         </View>
         <Button
