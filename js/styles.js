@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   textInputMultiline: {
     alignSelf: 'stretch',
     margin: 10,
-    height: 200,
+    height: 150,
   },
 });
 
