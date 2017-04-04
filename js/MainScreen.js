@@ -168,10 +168,17 @@ class MainScreen extends Component {
             value={this.codes[this.state.currentCodeIndex].value}
             size={qrCodeSize} />
         </View>
-        <Button
-          title="Add new"
-          onPress={() => navigate('Add') }
-        />
+        <Picker
+          style={styles.picker}
+          onValueChange={(screen) => navigate(screen, {isNew: true, fields: {description: ''}} ) }
+        >
+          <Picker.Item key="new"     value=""        label="Create new QR code ..." />
+          <Picker.Item key="URL"     value="URL"     label="URL" />
+          <Picker.Item key="Text"    value="Text"    label="Text" />
+          <Picker.Item key="Phone"   value="Phone"   label="Phone number" />
+          <Picker.Item key="Contact" value="Contact" label="Contact" />
+          <Picker.Item key="Wifi"    value="Wifi"    label="Wifi network"  />
+        </Picker>
       </View>
     );
   };
