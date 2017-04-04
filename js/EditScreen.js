@@ -45,32 +45,34 @@ class EditScreen extends Component {
     const { navigate } = this.props.navigation;
 
     Keyboard.dismiss();
-    if (this.validate()) {
-      // Get current codes.
-      AsyncStorage.getItem('codeSettings').then((data) => {
-        if (data !== null) {
-          var codeSettings = JSON.parse(data);
-          // Create and add new code.
-          var code = this.createCode();
-          // If new: Append. 
-          if (this.isNew) {
-            codeSettings.codes.push(code);
-            // Set index to created code.
-            codeSettings.currentCodeIndex = codeSettings.codes.length - 1;
-          }
-          // else: Replace.
-          else {
-            codeSettings.codes[codeSettings.currentCodeIndex] = code;
-          }
-          // Save and go back to main then.
-          AsyncStorage.setItem('codeSettings', JSON.stringify(codeSettings)).then((data) => {
-            this.parent.codes = codeSettings.codes;
-            this.parent.setState({ currentCodeIndex: codeSettings.currentCodeIndex });
-            this.props.navigation.goBack();
-          });
-        }
-      });
+    if (!this.validate()) {
+      return;
     }
+    // Get current codes.
+    AsyncStorage.getItem('codeSettings').then((data) => {
+      if (data == null) {
+        return;
+      }
+      var codeSettings = JSON.parse(data);
+      // Create and add new code.
+      var code = this.createCode();
+      // If new: Append. 
+      if (this.isNew) {
+        codeSettings.codes.push(code);
+        // Set index to created code.
+        codeSettings.currentCodeIndex = codeSettings.codes.length - 1;
+      }
+      // else: Replace.
+      else {
+        codeSettings.codes[codeSettings.currentCodeIndex] = code;
+      }
+      // Save and go back to main then.
+      AsyncStorage.setItem('codeSettings', JSON.stringify(codeSettings)).then((data) => {
+        this.parent.codes = codeSettings.codes;
+        this.parent.setState({ currentCodeIndex: codeSettings.currentCodeIndex });
+        this.props.navigation.goBack();
+      });
+    });
   };
 
   componentDidMount() {
