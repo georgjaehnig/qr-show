@@ -34,7 +34,7 @@ class EditScreen extends Component {
   };
 
   validate = () => {
-    if (this.state.description == '') {
+    if (!this.state.description) {
       this.showError('Description must not be empty.');
       return false;
     }
