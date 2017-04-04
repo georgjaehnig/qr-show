@@ -8,6 +8,7 @@ import {
   AsyncStorage,
   Button,
   Dimensions,
+  Linking,
   Picker,
   StyleSheet,
   Text,
@@ -16,6 +17,7 @@ import {
 } from 'react-native';
 
 import QRCode from 'react-native-qrcode';
+import URL from 'url-parse';
  
 class MainScreen extends Component {
 
@@ -104,6 +106,30 @@ class MainScreen extends Component {
       }
       this.setState({ isLoading: false });
     });
+  }
+
+  componentDidMount() {
+    Linking.addEventListener('url', this._handleIncomingIntent);
+    return;
+    var urlstr = 'https://www.google.com/search?hl=de';
+    var url = new URL(urlstr);
+    console.log(url.protocol);
+  } 
+  componentWillUnmount() {
+    Linking.removeEventListener('url', this._handleIncomingIntent);
+  } 
+
+  _handleIncomingIntent = (event) => {
+    this.props.navigation.navigate(
+      'URL', 
+      {
+        isNew: true, 
+        fields: {
+          description: '',
+          url: event.url,
+        }
+      } 
+    );
   }
 
   render() {
