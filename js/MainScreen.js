@@ -110,10 +110,6 @@ class MainScreen extends Component {
 
   componentDidMount() {
     Linking.addEventListener('url', this._handleIncomingIntent);
-    return;
-    var urlstr = 'https://www.google.com/search?hl=de';
-    var url = new URL(urlstr);
-    console.log(url.protocol);
   } 
   componentWillUnmount() {
     Linking.removeEventListener('url', this._handleIncomingIntent);
