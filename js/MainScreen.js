@@ -134,9 +134,7 @@ class MainScreen extends Component {
         <Picker
           style={styles.picker}
           selectedValue={this.state.currentCodeIndex}
-          onValueChange={(currentCodeIndex) => {
-            this.setState({ currentCodeIndex });
-          }}
+          onValueChange={(currentCodeIndex) => this.setState({ currentCodeIndex }) }
         >
 
           {this.codes.map((code, index) => <Picker.Item key={index} label={code.type + ': ' +code.fields.description} value={index} />)}
