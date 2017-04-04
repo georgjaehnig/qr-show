@@ -106,38 +106,50 @@ class MainScreen extends Component {
 
   handleIncomingText = (text) => {
 
-		// Only if the text is set.
-		if (text == null) {
-			return;
-		}
-		// Get description and ge0 url from shared text.
-		var matches = text.match(/(Check out\n([^]*)\n([^]*)\n(ge0:[^]*))\n(http[^]*)\n/);
-		if (matches) {
-			// Build description.
-			var description = matches[2] + ' ' + matches[3];
-			var ge0Url = matches[5];
-			// Fetch the ge0 url and read its whole HTML.
-			fetch(ge0Url).then((response) => {
-				response.text().then((ge0Text) => {
-					// Find coordinates in the HTML body.
-					var ge0Matches = ge0Text.match(/<div class="ge0coordBox">(.*)<\/div>/mg);
-					var lat = ge0Matches[0].match(/<div class="ge0coordBox">(.*)<\/div>/)[1];
-					var lon = ge0Matches[1].match(/<div class="ge0coordBox">(.*)<\/div>/)[1];
-					// Open LocationScreen.
-					this.props.navigation.navigate(
-						'Location', 
-						{
-							isNew: true, 
-							fields: {
-								description: description,
-								lat: lat,
-								lon: lon,
-							}
-						} 
-					);
-				});
-			});
-		}
+    // Only if the text is set.
+    if (text == null) {
+      return;
+    }
+    // Check if Maps.me share.
+    // Get description and ge0 url from shared text.
+    var matches = text.match(/(Check out\n([^]*)\n([^]*)\n(ge0:[^]*))\n(http[^]*)\n/);
+    if (matches) {
+      // Build description.
+      var description = matches[2] + ' ' + matches[3];
+      var ge0Url = matches[5];
+      // Fetch the ge0 url and read its whole HTML.
+      fetch(ge0Url).then((response) => {
+        response.text().then((ge0Text) => {
+          // Find coordinates in the HTML body.
+          var ge0Matches = ge0Text.match(/<div class="ge0coordBox">(.*)<\/div>/mg);
+          var lat = ge0Matches[0].match(/<div class="ge0coordBox">(.*)<\/div>/)[1];
+          var lon = ge0Matches[1].match(/<div class="ge0coordBox">(.*)<\/div>/)[1];
+          // Open LocationScreen.
+          this.props.navigation.navigate(
+            'Location', 
+            {
+              isNew: true, 
+              fields: {
+                description: description,
+                lat: lat,
+                lon: lon,
+              }
+            } 
+          );
+        });
+      });
+      return;
+    }
+    this.props.navigation.navigate(
+      'Text', 
+      {
+        isNew: true, 
+        fields: {
+          description: description,
+          text: text,
+        }
+      } 
+    );
   }
 
   // Overrides:
