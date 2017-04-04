@@ -111,13 +111,13 @@ class MainScreen extends Component {
   }
 
   componentDidMount() {
-    Linking.addEventListener('url', this._handleIncomingIntent);
+    Linking.addEventListener('url', this.handleIncomingUrl);
   } 
   componentWillUnmount() {
-    Linking.removeEventListener('url', this._handleIncomingIntent);
+    Linking.removeEventListener('url', this.handleIncomingUrl);
   } 
 
-  _handleIncomingIntent = (event) => {
+  handleIncomingUrl = (event) => {
     this.props.navigation.navigate(
       'URL', 
       {
