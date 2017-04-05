@@ -161,7 +161,6 @@ class MainScreen extends Component {
 
   constructor(props) {
     super(props);
-    //console.log('constructor');
     AsyncStorage.getItem('codeSettings').then((data) => {
       if (data !== null) {
         var codeSettings = JSON.parse(data);
@@ -187,7 +186,6 @@ class MainScreen extends Component {
   componentWillUnmount() {
     Linking.removeEventListener('url', this.handleIncomingUrl);
   } 
-
 
   render() {
 
