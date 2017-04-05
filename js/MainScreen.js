@@ -112,11 +112,13 @@ class MainScreen extends Component {
     }
     // Check if Maps.me share.
     // Get description and ge0 url from shared text.
-    var matches = text.match(/(Check out\n([^]*)\n([^]*)\n(ge0:[^]*))\n(http[^]*)\n/);
+    var matches = text.match(/(Check out\n([^]*)\n(ge0:[^]*))\n(http[^]*)\n/);
     if (matches) {
       // Build description.
-      var description = matches[2] + ' ' + matches[3];
-      var ge0Url = matches[5];
+      var description = matches[2];
+      // Replace linebreaks.
+      description = description.replace(/(\n)+/g, ' ');
+      var ge0Url = matches[4];
       // Fetch the ge0 url and read its whole HTML.
       fetch(ge0Url).then((response) => {
         response.text().then((ge0Text) => {
