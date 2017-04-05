@@ -51,6 +51,7 @@ class WifiScreen extends EditScreen {
           ref='SsidInput'
           style={styles.textInput}
           autoCapitalize="none"
+          autoCorrect={false}
           placeholder="SSID"
           onChangeText={(ssid) => this.setState({ssid})}
           value={this.state.ssid}
@@ -82,6 +83,7 @@ class WifiScreen extends EditScreen {
             ref='PasswordInput'
             style={styles.textInput}
             autoCapitalize="none"
+            autoCorrect={false}
             placeholder="Password"
             onChangeText={(password) => this.setState({password})}
             value={this.state.password}
