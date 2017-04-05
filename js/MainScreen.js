@@ -142,6 +142,7 @@ class MainScreen extends Component {
       });
       return;
     }
+    // Default: Treat as text.
     this.props.navigation.navigate(
       'Text', 
       {
