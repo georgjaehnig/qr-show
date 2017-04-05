@@ -153,6 +153,8 @@ class MainScreen extends Component {
         }
       } 
     );
+    // Clear Text after handling.
+    ShareMenu.clearSharedText();
   }
 
   // Overrides:
