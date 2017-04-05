@@ -140,6 +140,7 @@ class MainScreen extends Component {
           );
         });
       });
+      ShareMenu.clearSharedText();
       return;
     }
     // Default: Treat as text.
