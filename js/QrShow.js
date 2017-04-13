@@ -20,8 +20,8 @@ const store = createStore(reducer);
 const load = storage.createLoader(engine);
 load(store)
     .then((newState) => {
-			console.log('Loaded state:', newState);
-		}) 
+      console.log('Loaded state:', newState);
+    }) 
     .catch(() => console.log('Failed to load previous state'));
 
 import MainScreen     from './MainScreen.js';
