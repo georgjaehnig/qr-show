@@ -4,7 +4,10 @@ import React, { Component } from 'react'
 import styles from './styles.js';
 import { connect } from 'react-redux'; 
 
-import { setCurrentCodeIndex } from './codes.js';
+import { 
+  setCurrentCodeIndex,
+  deleteCurrentCode
+} from './codes.js';
 
 import {
   Alert,
@@ -71,10 +74,7 @@ class MainScreen extends Component {
         {
           text: 'OK', 
           onPress: () => {
-            this.props.codeSettings.codes.splice(this.props.codeSettings.currentCodeIndex, 1);
-            // Limit index to array length.  
-            this.props.codeSettings.currentCodeIndex = Math.min(this.props.codeSettings.currentCodeIndex, this.props.codeSettings.codes.length - 1);
-            this.saveCodeSettings();
+            this.props.deleteCurrentCode();
             return this.forceUpdate();
           },
         },
@@ -262,6 +262,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   setCurrentCodeIndex,
+  deleteCurrentCode,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);

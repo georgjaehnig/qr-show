@@ -46,6 +46,17 @@ export default function reducer(state = initialState, action = {}) {
         ...state.codes.slice(nextState.currentCodeIndex + 1),
       ];
       return nextState;
+    case 'deleteCurrentCode':
+      nextState = {
+        ...state  
+      };
+      nextState.codes = [
+        ...state.codes.slice(0, nextState.currentCodeIndex),
+        ...state.codes.slice(nextState.currentCodeIndex + 1),
+      ];
+      // Limit index to array length.  
+      nextState.currentCodeIndex = Math.min(nextState.currentCodeIndex, nextState.codes.length - 1);
+      return nextState;
     case 'setCurrentCodeIndex':
       nextState = {
         ...state  
@@ -60,5 +71,10 @@ export function setCurrentCodeIndex(currentCodeIndex) {
   return { 
     type: 'setCurrentCodeIndex',
     currentCodeIndex: currentCodeIndex,
+  } 
+}
+export function deleteCurrentCode() {
+  return { 
+    type: 'deleteCurrentCode',
   } 
 }
