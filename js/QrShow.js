@@ -16,13 +16,33 @@ import WifiScreen     from './WifiScreen.js';
 import URLScreen      from './URLScreen.js';
 import LocationScreen from './LocationScreen.js';
 
-import { createStore, combineReducers } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+
+import * as storage from 'redux-storage'
 
 import codeSettings from './codes.js';
 
 const reducers = combineReducers({codeSettings});
 
-const store = createStore(reducers);
+const reducer = storage.reducer(reducers);
+
+import createEngine from 'redux-storage-engine-reactnativeasyncstorage';
+
+const engine = createEngine('qrshow');
+
+const middleware = storage.createMiddleware(engine);
+
+const createStoreWithMiddleware = applyMiddleware(middleware)(createStore);
+
+const store = createStore(reducer);
+
+const load = storage.createLoader(engine);
+load(store)
+    .then((newState) => {
+			console.log('Loaded state:', newState)
+			console.log('Loaded state:', newState.toString())
+		}) 
+    .catch(() => console.log('Failed to load previous state'));
 
 const QrShow = StackNavigator({
   Main:    {screen: MainScreen},
