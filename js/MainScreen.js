@@ -2,6 +2,9 @@
 
 import React, { Component } from 'react'
 import styles from './styles.js';
+import { connect } from 'react-redux'; 
+
+import { setCurrentCodeIndex } from './codes.js';
 
 import {
   Alert,
@@ -27,20 +30,8 @@ class MainScreen extends Component {
     title: 'QR Show',
   };
 
-  // Default codes.
-  codes = [
-    {
-      value: 'https://github.com/georgjaehnig/qr-show',
-      type:  'URL',
-      fields: {
-        description: 'QR Show on Github',
-        url: 'https://github.com/georgjaehnig/qr-show',
-      }
-    },
-  ];
-
   state = {
-    isLoading: true,
+    //isLoading: true,
     currentCodeIndex: 0,
   };
 
@@ -48,14 +39,14 @@ class MainScreen extends Component {
 
   saveCodeSettings = () => {
     var codeSettings = {
-      codes: this.codes,
-      currentCodeIndex: this.state.currentCodeIndex,
+      codes: this.props.codeSettings.codes,
+      currentCodeIndex: this.props.codeSettings.currentCodeIndex,
     }
     AsyncStorage.setItem('codeSettings', JSON.stringify(codeSettings));
   };
 
   deleteCode = () => {
-    if (this.codes.length < 2) {
+    if (this.props.codeSettings.codes.length < 2) {
       Alert.alert(
         'Error',
         'At least 1 code has to remain always.',
@@ -70,7 +61,7 @@ class MainScreen extends Component {
     }
     Alert.alert(
       'Warning',
-      'Delete ' + this.codes[this.state.currentCodeIndex].fields.description + '?',
+      'Delete ' + this.props.codeSettings.codes[this.props.codeSettings.currentCodeIndex].fields.description + '?',
       [
         {
           text: 'Cancel', 
@@ -80,9 +71,9 @@ class MainScreen extends Component {
         {
           text: 'OK', 
           onPress: () => {
-            this.codes.splice(this.state.currentCodeIndex, 1);
+            this.props.codeSettings.codes.splice(this.props.codeSettings.currentCodeIndex, 1);
             // Limit index to array length.  
-            this.state.currentCodeIndex = Math.min(this.state.currentCodeIndex, this.codes.length - 1);
+            this.props.codeSettings.currentCodeIndex = Math.min(this.props.codeSettings.currentCodeIndex, this.props.codeSettings.codes.length - 1);
             this.saveCodeSettings();
             return this.forceUpdate();
           },
@@ -160,22 +151,6 @@ class MainScreen extends Component {
 
   // Overrides:
 
-  constructor(props) {
-    super(props);
-    AsyncStorage.getItem('codeSettings').then((data) => {
-      if (data !== null) {
-        var codeSettings = JSON.parse(data);
-        this.codes = codeSettings.codes;
-        this.state.currentCodeIndex = codeSettings.currentCodeIndex;
-      }
-      // Save defaults.
-      else {
-        this.saveCodeSettings();
-      }
-      this.setState({ isLoading: false });
-    });
-  }
-
   componentWillMount() {
     ShareMenu.getSharedText((text) => this.handleIncomingText(text));
   }
@@ -190,8 +165,6 @@ class MainScreen extends Component {
 
   render() {
 
-    console.log("index: " + this.state.currentCodeIndex);
-
     if (this.state.isLoading) {
       return (
         <View style={styles.container}>
@@ -199,27 +172,37 @@ class MainScreen extends Component {
         </View>
       );
     }
+
+    console.log('render main');
+    console.log(this);
+    console.log(this.store);
+
+    console.log("index: " + this.props.codeSettings.currentCodeIndex);
     
     const { navigate } = this.props.navigation;
 
     // Get Dimensions for current window.
     var {height, width} = Dimensions.get('window');
-
+ 
     // Get the lower value.
     var qrCodeSize = Math.min(height,width);
 
     // Add some margin.
     qrCodeSize = qrCodeSize - 40;
 
+    console.log(this.props);
     return (
       <View style={styles.container}>
         <Picker
           style={styles.picker}
-          selectedValue={this.state.currentCodeIndex}
-          onValueChange={(currentCodeIndex) => this.setState({ currentCodeIndex }) }
+          selectedValue={this.props.codeSettings.currentCodeIndex}
+          onValueChange={(currentCodeIndex) => { 
+            //this.props.dispatch({type: 'setCurrentCodeIndex', currentCodeIndex: currentCodeIndex})
+            this.props.setCurrentCodeIndex(currentCodeIndex);
+          }}
         >
 
-          {this.codes.map((code, index) => <Picker.Item key={index} label={code.type + ': ' +code.fields.description} value={index} />)}
+          {this.props.codeSettings.codes.map((code, index) => <Picker.Item key={index} label={code.type + ': ' +code.fields.description} value={index} />)}
 
         </Picker>
         <View style={styles.codeOperations}>
@@ -228,11 +211,11 @@ class MainScreen extends Component {
             title="Edit"
             onPress={() => { 
               navigate(
-                this.codes[this.state.currentCodeIndex].type,
+                this.props.codeSettings.codes[this.props.codeSettings.currentCodeIndex].type,
                 {
-                  fields: this.codes[this.state.currentCodeIndex].fields,
-                  currentCodeIndex: this.state.currentCodeIndex,
-                  parent: this,
+                  fields: this.props.codeSettings.codes[this.props.codeSettings.currentCodeIndex].fields,
+                  currentCodeIndex: this.props.codeSettings.currentCodeIndex,
+                  isNew: false,
                 }
               ) 
             }}
@@ -245,7 +228,7 @@ class MainScreen extends Component {
         </View>
         <View style={styles.qrcode}>
           <QRCode
-            value={this.codes[this.state.currentCodeIndex].value}
+            value={this.props.codeSettings.codes[this.props.codeSettings.currentCodeIndex].value}
             size={qrCodeSize} />
         </View>
         <Picker
@@ -270,4 +253,15 @@ class MainScreen extends Component {
 
 }
 
-module.exports = MainScreen;
+//module.exports = MainScreen;
+//export default MainScreen;
+
+function mapStateToProps(state) {
+  return state;
+}
+
+const mapDispatchToProps = {
+  setCurrentCodeIndex,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);

@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react'
 import styles from './styles.js';
+import { connect } from 'react-redux'; 
 
 import {
   Button,
@@ -36,6 +37,12 @@ class WifiScreen extends EditScreen {
   };
 
   render() {
+
+		//console.log('render');
+		//console.log(this);
+		//console.log('this wifi');
+		//console.log(this.store.getState());
+
     return (
       <ScrollView style={styles.scrollView}>
         <TextInput
@@ -107,4 +114,4 @@ class WifiScreen extends EditScreen {
 
 }
 
-module.exports = WifiScreen;
+export default connect()(WifiScreen);

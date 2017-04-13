@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react'
 import styles from './styles.js';
+import { connect } from 'react-redux'; 
 
 import {
   Button,
@@ -118,4 +119,4 @@ END:VCARD`,
 
 }
 
-module.exports = ContactScreen;
+export default connect()(ContactScreen);

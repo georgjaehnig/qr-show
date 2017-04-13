@@ -1,8 +1,12 @@
 'use strict';
 
+import React, { Component } from 'react'
+
 import {
   StackNavigator,
 } from 'react-navigation';
+
+import { Provider } from 'react-redux'; 
 
 import MainScreen     from './MainScreen.js';
 import PhoneScreen    from './PhoneScreen.js';
@@ -11,6 +15,14 @@ import ContactScreen  from './ContactScreen.js';
 import WifiScreen     from './WifiScreen.js';
 import URLScreen      from './URLScreen.js';
 import LocationScreen from './LocationScreen.js';
+
+import { createStore, combineReducers } from 'redux';
+
+import codeSettings from './codes.js';
+
+const reducers = combineReducers({codeSettings});
+
+const store = createStore(reducers);
 
 const QrShow = StackNavigator({
   Main:    {screen: MainScreen},
@@ -22,4 +34,15 @@ const QrShow = StackNavigator({
   Location: {screen: LocationScreen},
 }); 
 
-module.exports = QrShow;
+
+class App extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <QrShow/>
+      </Provider>
+    );
+  }
+}
+
+module.exports = App;

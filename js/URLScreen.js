@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react'
 import styles from './styles.js';
+import { connect } from 'react-redux'; 
 
 import {
   Button,
@@ -63,4 +64,4 @@ class URLScreen extends EditScreen {
 
 }
 
-module.exports = URLScreen;
+export default connect()(URLScreen);

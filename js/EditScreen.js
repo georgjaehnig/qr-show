@@ -25,13 +25,8 @@ class EditScreen extends Component {
   };
 
   componentWillMount() {
-    // Set params.
-    if (this.props.navigation.state.params) {
-      this.state = this.props.navigation.state.params.fields;
-      this.isNew = this.props.navigation.state.params.isNew; 
-      this.parent = this.props.navigation.state.params.parent;
-    }
-  };
+    this.setState(this.props.navigation.state.params.fields);
+  }
 
   validate = () => {
     if (!this.state.description) {
@@ -42,37 +37,23 @@ class EditScreen extends Component {
   };
   
   submit = () => {
-    const { navigate } = this.props.navigation;
 
     Keyboard.dismiss();
+
+    const { navigate } = this.props.navigation;
+
     if (!this.validate()) {
       return;
     }
-    // Get current codes.
-    AsyncStorage.getItem('codeSettings').then((data) => {
-      if (data == null) {
-        return;
-      }
-      var codeSettings = JSON.parse(data);
-      // Create and add new code.
-      var code = this.createCode();
-      // If new: Append. 
-      if (this.isNew) {
-        codeSettings.codes.push(code);
-        // Set index to created code.
-        codeSettings.currentCodeIndex = codeSettings.codes.length - 1;
-      }
-      // else: Replace.
-      else {
-        codeSettings.codes[codeSettings.currentCodeIndex] = code;
-      }
-      // Save and go back to main then.
-      AsyncStorage.setItem('codeSettings', JSON.stringify(codeSettings)).then((data) => {
-        this.parent.codes = codeSettings.codes;
-        this.parent.setState({ currentCodeIndex: codeSettings.currentCodeIndex });
-        this.props.navigation.goBack();
-      });
-    });
+
+    var code = this.createCode();
+    if (this.props.navigation.state.params.isNew) {
+      this.props.dispatch({type: 'addCode', code: code});
+    } 
+    else {
+      this.props.dispatch({type: 'updateCurrentCode', code: code});
+    }
+    this.props.navigation.goBack();
   };
 
   componentDidMount() {
