@@ -11,7 +11,6 @@ import {
 
 import {
   Alert,
-  AsyncStorage,
   Button,
   Dimensions,
   Linking,
@@ -45,7 +44,6 @@ class MainScreen extends Component {
       codes: this.props.codeSettings.codes,
       currentCodeIndex: this.props.codeSettings.currentCodeIndex,
     }
-    AsyncStorage.setItem('codeSettings', JSON.stringify(codeSettings));
   };
 
   deleteCode = () => {

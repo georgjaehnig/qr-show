@@ -5,7 +5,6 @@ import styles from './styles.js';
 
 import {
   Alert,
-  AsyncStorage,
   Keyboard,
   StyleSheet,
 } from 'react-native';
