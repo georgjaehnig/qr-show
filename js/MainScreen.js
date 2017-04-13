@@ -171,12 +171,6 @@ class MainScreen extends Component {
       );
     }
 
-    console.log('render main');
-    console.log(this);
-    console.log(this.store);
-
-    console.log("index: " + this.props.codeSettings.currentCodeIndex);
-    
     const { navigate } = this.props.navigation;
 
     // Get Dimensions for current window.
@@ -188,7 +182,6 @@ class MainScreen extends Component {
     // Add some margin.
     qrCodeSize = qrCodeSize - 40;
 
-    console.log(this.props);
     return (
       <View style={styles.container}>
         <Picker
