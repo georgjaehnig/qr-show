@@ -39,13 +39,6 @@ class MainScreen extends Component {
 
   // Custom:
 
-  saveCodeSettings = () => {
-    var codeSettings = {
-      codes: this.props.codeSettings.codes,
-      currentCodeIndex: this.props.codeSettings.currentCodeIndex,
-    }
-  };
-
   deleteCode = () => {
     if (this.props.codeSettings.codes.length < 2) {
       Alert.alert(
@@ -239,7 +232,7 @@ class MainScreen extends Component {
   };
 
   componentDidUpdate() {
-    this.saveCodeSettings();
+    //this.saveCodeSettings();
   }
 
 }
