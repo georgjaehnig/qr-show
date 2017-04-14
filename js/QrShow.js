@@ -15,7 +15,7 @@ const engine = createEngine('qrshow');
 const middleware = storage.createMiddleware(engine);
 const createStoreWithMiddleware = applyMiddleware(middleware)(createStore);
 
-const store = createStore(reducer);
+const store = createStoreWithMiddleware(reducer);
 
 const load = storage.createLoader(engine);
 load(store)
