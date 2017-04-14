@@ -220,9 +220,14 @@ class MainScreen extends Component {
             pagingEnabled={true}
             style={styles.qrcodes} 
             contentContainerStyle={{flex: 0}}
-            onScroll={(data) => {
-              console.log('scrolled', data);
+            onScroll={(event) => {
+              //this.refs.QRCodes.
+              var currentCodeIndex = event.nativeEvent.contentOffset.x / (qrCodeSize + 40);
+              if (typeof currentCodeIndex==='number' && (currentCodeIndex%1)===0) {
+                this.props.setCurrentCodeIndex(currentCodeIndex);
+              }
             }}
+            scrollEventThrottle={500}
           >
 
           {this.props.codeSettings.codes.map((code, index) => 
