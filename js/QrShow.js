@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import { StackNavigator } from 'react-navigation';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux'; 
-import * as storage from 'redux-storage'
+import * as storage from 'redux-storage';
 
 import codeSettings from './codes.js';
 const reducers = combineReducers({codeSettings});
