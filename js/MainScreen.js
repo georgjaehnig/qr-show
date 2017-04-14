@@ -69,6 +69,11 @@ class MainScreen extends Component {
     );
   }
 
+  isInt = (value) => {
+    var isInt = typeof value === 'number' && (value % 1) === 0;
+    return isInt;
+  }
+
   handleIncomingUrl = (event) => {
     this.props.navigation.navigate(
       'URL', 
@@ -210,7 +215,7 @@ class MainScreen extends Component {
             onScroll={(event) => {
               //this.refs.QRCodes.
               var currentCodeIndex = event.nativeEvent.contentOffset.x / (qrCodeSize + 40);
-              if (typeof currentCodeIndex==='number' && (currentCodeIndex%1)===0) {
+              if (this.isInt(currentCodeIndex)) {
                 this.props.setCurrentCodeIndex(currentCodeIndex);
               }
             }}
