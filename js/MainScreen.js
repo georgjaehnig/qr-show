@@ -230,11 +230,6 @@ class MainScreen extends Component {
       </View>
     );
   };
-
-  componentDidUpdate() {
-    //this.saveCodeSettings();
-  }
-
 }
 
 //module.exports = MainScreen;
