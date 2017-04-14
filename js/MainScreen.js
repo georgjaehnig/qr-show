@@ -33,11 +33,6 @@ class MainScreen extends Component {
     title: 'QR Show',
   };
 
-  state = {
-    //isLoading: true,
-    currentCodeIndex: 0,
-  };
-
   // Custom:
 
   deleteCode = () => {
@@ -156,14 +151,6 @@ class MainScreen extends Component {
   } 
 
   render() {
-
-    if (this.state.isLoading) {
-      return (
-        <View style={styles.container}>
-          <Text>Loading...</Text>
-        </View>
-      );
-    }
 
     const { navigate } = this.props.navigation;
 
