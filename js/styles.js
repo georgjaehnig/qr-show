@@ -33,7 +33,11 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   qrcode: {
-    margin: 10,
+    marginLeft: 20,
+    marginRight: 20,
+  },
+  qrcodes: {
+    margin: 0,
   },
   textInput: {
     alignSelf: 'stretch',

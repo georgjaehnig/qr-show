@@ -15,6 +15,7 @@ import {
   Dimensions,
   Linking,
   Picker,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -182,6 +183,8 @@ class MainScreen extends Component {
           selectedValue={this.props.codeSettings.currentCodeIndex}
           onValueChange={(currentCodeIndex) => { 
             this.props.setCurrentCodeIndex(currentCodeIndex);
+            var scrollToX = (qrCodeSize + 40) * currentCodeIndex;
+            this.refs.QRCodes.scrollTo({x: scrollToX, animated: true}) 
           }}
         >
 
@@ -209,11 +212,29 @@ class MainScreen extends Component {
             onPress={() => this.deleteCode() }
           />
         </View>
-        <View style={styles.qrcode}>
-          <QRCode
-            value={this.props.codeSettings.codes[this.props.codeSettings.currentCodeIndex].value}
-            size={qrCodeSize} />
-        </View>
+        <ScrollView 
+            ref='QRCodes'
+            horizontal={true} 
+            showsHorizontalScrollIndicator={false} 
+            showsHorizontalScrollIndicator={false} 
+            pagingEnabled={true}
+            style={styles.qrcodes} 
+            contentContainerStyle={{flex: 0}}
+            onScroll={(data) => {
+              console.log('scrolled', data);
+            }}
+          >
+
+          {this.props.codeSettings.codes.map((code, index) => 
+            <View key={index} style={styles.qrcode} >
+              <QRCode
+                value={code.value}
+                size={qrCodeSize} />
+            </View>
+          )}
+
+
+        </ScrollView>
         <Picker
           style={styles.picker}
           onValueChange={(screen) => navigate(screen, {isNew: true, fields: {description: ''}} ) }
