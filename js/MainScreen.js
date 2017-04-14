@@ -181,7 +181,6 @@ class MainScreen extends Component {
           style={styles.picker}
           selectedValue={this.props.codeSettings.currentCodeIndex}
           onValueChange={(currentCodeIndex) => { 
-            //this.props.dispatch({type: 'setCurrentCodeIndex', currentCodeIndex: currentCodeIndex})
             this.props.setCurrentCodeIndex(currentCodeIndex);
           }}
         >
