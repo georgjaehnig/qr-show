@@ -29,13 +29,13 @@ import LocationScreen from './LocationScreen.js';
 
 
 const QrShow = StackNavigator({
-  Main:    {screen: MainScreen},
-  Phone:   {screen: PhoneScreen},
-  Text:    {screen: TextScreen},
-  Contact: {screen: ContactScreen},
-  Wifi:    {screen: WifiScreen},
-  URL:     {screen: URLScreen},
+  Main:     {screen: MainScreen},
+  Contact:  {screen: ContactScreen},
   Location: {screen: LocationScreen},
+  Phone:    {screen: PhoneScreen},
+  Text:     {screen: TextScreen},
+  Wifi:     {screen: WifiScreen},
+  URL:      {screen: URLScreen},
 }); 
 
 
