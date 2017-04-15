@@ -33,6 +33,8 @@ class MainScreen extends Component {
     title: 'QR Show',
   };
 
+  qrCodeSize = 0;
+
   // Custom:
 
   deleteCode = () => {
@@ -141,6 +143,13 @@ class MainScreen extends Component {
     ShareMenu.clearSharedText();
   }
 
+  scrollToCurrentCode() {
+    console.log('currentCodeIndex', this.props.codeSettings.currentCodeIndex);
+    var scrollToX = (this.qrCodeSize + 40) * this.props.codeSettings.currentCodeIndex;
+    this.refs.QRCodes.scrollTo({x: scrollToX, animated: false}) 
+    console.log('scrollToX', scrollToX);
+  };
+
   // Overrides:
 
   componentWillMount() {
@@ -164,10 +173,10 @@ class MainScreen extends Component {
     var {height, width} = Dimensions.get('window');
  
     // Get the lower value.
-    var qrCodeSize = Math.min(height,width);
+    this.qrCodeSize = Math.min(height,width);
 
     // Add some margin.
-    qrCodeSize = qrCodeSize - 40;
+    this.qrCodeSize = this.qrCodeSize - 40;
 
     console.log('render');
 
@@ -178,8 +187,6 @@ class MainScreen extends Component {
           selectedValue={this.props.codeSettings.currentCodeIndex}
           onValueChange={(currentCodeIndex) => { 
             this.props.setCurrentCodeIndex(currentCodeIndex);
-            var scrollToX = (qrCodeSize + 40) * currentCodeIndex;
-            this.refs.QRCodes.scrollTo({x: scrollToX, animated: true}) 
           }}
         >
 
@@ -216,9 +223,11 @@ class MainScreen extends Component {
             style={styles.qrcodes} 
             contentContainerStyle={{flex: 0}}
             onScroll={(event) => {
-              //this.refs.QRCodes.
-              var currentCodeIndex = event.nativeEvent.contentOffset.x / (qrCodeSize + 40);
+              console.log('onScroll', event.nativeEvent.contentOffset.x);
+              var currentCodeIndex = event.nativeEvent.contentOffset.x / (this.qrCodeSize + 40);
               if (this.isInt(currentCodeIndex)) {
+                console.log('offset', event.nativeEvent.contentOffset.x);
+                //console.log('set currentCodeIndex from scroll', currentCodeIndex );
                 this.props.setCurrentCodeIndex(currentCodeIndex);
               }
             }}
@@ -229,7 +238,7 @@ class MainScreen extends Component {
             <View key={index} style={styles.qrcode} >
               <QRCode
                 value={code.value}
-                size={qrCodeSize} />
+                size={this.qrCodeSize} />
             </View>
           )}
 
@@ -250,6 +259,10 @@ class MainScreen extends Component {
       </View>
     );
   };
+  componentDidUpdate() {
+    console.log('componentDidUpdate');
+    this.scrollToCurrentCode();
+  } 
 }
 
 //module.exports = MainScreen;
