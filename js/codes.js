@@ -62,6 +62,7 @@ export default function reducer(state = initialState, action = {}) {
         ...state  
       };
       nextState.currentCodeIndex = action.currentCodeIndex;
+      //console.log('setCurrentCodeIndex', nextState.currentCodeIndex);
       return nextState;
     default:
       return state;
