@@ -219,7 +219,7 @@ class MainScreen extends Component {
                 this.props.setCurrentCodeIndex(currentCodeIndex);
               }
             }}
-            scrollEventThrottle={500}
+            scrollEventThrottle={500} // TODO: Seems to be ignored. Why?
           >
 
           {this.props.codeSettings.codes.map((code, index) => 
