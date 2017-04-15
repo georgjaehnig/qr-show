@@ -218,7 +218,7 @@ class MainScreen extends Component {
             ref='QRCodes'
             horizontal={true} 
             showsHorizontalScrollIndicator={false} 
-            showsHorizontalScrollIndicator={false} 
+            showsVerticalScrollIndicator={false} 
             pagingEnabled={true}
             style={styles.qrcodes} 
             contentContainerStyle={{flex: 0}}
