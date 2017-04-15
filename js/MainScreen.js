@@ -148,6 +148,7 @@ class MainScreen extends Component {
   }
 
   componentDidMount() {
+    console.log('componentDidMount');
     Linking.addEventListener('url', this.handleIncomingUrl);
   } 
 
@@ -167,6 +168,8 @@ class MainScreen extends Component {
 
     // Add some margin.
     qrCodeSize = qrCodeSize - 40;
+
+    console.log('render');
 
     return (
       <View style={styles.container}>
