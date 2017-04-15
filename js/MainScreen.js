@@ -261,6 +261,7 @@ class MainScreen extends Component {
   };
   componentDidUpdate() {
     console.log('componentDidUpdate');
+    console.log('codes.length', this.props.codeSettings.codes);
     this.scrollToCurrentCode();
   } 
 }
