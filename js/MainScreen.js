@@ -147,7 +147,7 @@ class MainScreen extends Component {
     console.log('currentCodeIndex', this.props.codeSettings.currentCodeIndex);
     var scrollToX = (this.qrCodeSize + 40) * this.props.codeSettings.currentCodeIndex;
     this.refs.QRCodes.scrollTo({x: scrollToX, animated: false}) 
-    console.log('scrollToX', scrollToX);
+    //console.log('scrollToX', scrollToX);
   };
 
   // Overrides:
@@ -223,10 +223,10 @@ class MainScreen extends Component {
             style={styles.qrcodes} 
             contentContainerStyle={{flex: 0}}
             onScroll={(event) => {
-              console.log('onScroll', event.nativeEvent.contentOffset.x);
+              //console.log('scrolled to', event.nativeEvent.contentOffset.x);
               var currentCodeIndex = event.nativeEvent.contentOffset.x / (this.qrCodeSize + 40);
               if (this.isInt(currentCodeIndex)) {
-                console.log('offset', event.nativeEvent.contentOffset.x);
+                //console.log('offset', event.nativeEvent.contentOffset.x);
                 //console.log('set currentCodeIndex from scroll', currentCodeIndex );
                 this.props.setCurrentCodeIndex(currentCodeIndex);
               }
