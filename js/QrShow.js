@@ -43,7 +43,6 @@ import WifiScreen     from './WifiScreen.js';
 import URLScreen      from './URLScreen.js';
 import LocationScreen from './LocationScreen.js';
 
-
 const QrShow = StackNavigator({
   Main:     {screen: MainScreen},
   Contact:  {screen: ContactScreen},
@@ -53,7 +52,6 @@ const QrShow = StackNavigator({
   Wifi:     {screen: WifiScreen},
   URL:      {screen: URLScreen},
 }); 
-
 
 class App extends Component {
   render() {
