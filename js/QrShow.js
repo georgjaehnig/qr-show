@@ -32,6 +32,7 @@ load(store)
 		// Something like:
 		// MainScreen.props.scrollToCurrentCode();
 		console.log('loaded');
+		store.dispatch({type: 'setLoading', loading: false});
 	})
 	.catch(() => console.log('Failed to load previous state'));
 
