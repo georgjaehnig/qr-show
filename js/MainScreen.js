@@ -167,6 +167,14 @@ class MainScreen extends Component {
 
   render() {
 
+    if (this.props.codeSettings.loading) {
+      return (
+        <View style={styles.container}>
+          <Text>Loading...</Text>
+        </View>
+      );
+    }
+
     const { navigate } = this.props.navigation;
 
     // Get Dimensions for current window.
@@ -261,8 +269,10 @@ class MainScreen extends Component {
   };
   componentDidUpdate() {
     console.log('componentDidUpdate');
-    console.log('codes.length', this.props.codeSettings.codes);
-    this.scrollToCurrentCode();
+    console.log('codes', this.props.codeSettings);
+    if (!this.props.codeSettings.loading) {
+      this.scrollToCurrentCode();
+    }
   } 
 }
 

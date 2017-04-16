@@ -22,6 +22,7 @@ initialState = {
     },
   ],
   currentCodeIndex: 0,
+  loading: true,
 }
 
 export default function reducer(state = initialState, action = {}) {
@@ -63,6 +64,12 @@ export default function reducer(state = initialState, action = {}) {
       };
       nextState.currentCodeIndex = action.currentCodeIndex;
       //console.log('setCurrentCodeIndex', nextState.currentCodeIndex);
+      return nextState;
+    case 'setLoading':
+      nextState = {
+        ...state  
+      };
+      nextState.loading = action.loading;
       return nextState;
     default:
       return state;
