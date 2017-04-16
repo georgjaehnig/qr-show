@@ -271,7 +271,10 @@ class MainScreen extends Component {
     console.log('componentDidUpdate');
     console.log('codes', this.props.codeSettings);
     if (!this.props.codeSettings.loading) {
-      this.scrollToCurrentCode();
+      setTimeout(
+        () => {
+          this.scrollToCurrentCode();
+      }, 150);
     }
   } 
 }
