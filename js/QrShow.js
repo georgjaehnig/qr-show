@@ -34,7 +34,7 @@ load(store)
 		console.log('loaded');
 		store.dispatch({type: 'setLoading', loading: false});
 	})
-	.catch(() => console.log('Failed to load previous state'));
+	.catch((e) => console.log(e));
 
 import MainScreen     from './MainScreen.js';
 import PhoneScreen    from './PhoneScreen.js';
