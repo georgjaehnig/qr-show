@@ -159,6 +159,10 @@ class MainScreen extends Component {
   componentDidMount() {
     console.log('componentDidMount');
     Linking.addEventListener('url', this.handleIncomingUrl);
+    setTimeout(
+      () => {
+        this.scrollToCurrentCode();
+    }, 0);
   } 
 
   componentWillUnmount() {
@@ -271,12 +275,6 @@ class MainScreen extends Component {
   componentDidUpdate() {
     console.log('componentDidUpdate');
     console.log('codes', this.props.codeSettings);
-    if (!this.props.codeSettings.loading) {
-      setTimeout(
-        () => {
-          this.scrollToCurrentCode();
-      }, 150);
-    }
   } 
 }
 
