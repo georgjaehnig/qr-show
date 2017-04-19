@@ -279,9 +279,6 @@ class MainScreen extends Component {
   } 
 }
 
-//module.exports = MainScreen;
-//export default MainScreen;
-
 function mapStateToProps(state) {
   return state;
 }
