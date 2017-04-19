@@ -12,7 +12,7 @@ const reducer = storage.reducer(reducers);
 
 import createEngine from 'redux-storage-engine-reactnativeasyncstorage';
 const engine = createEngine('qrshow');
-const middleware = storage.createMiddleware(engine);
+const middleware = storage.createMiddleware(engine, [ 'setLoading' ]);
 const createStoreWithMiddleware = applyMiddleware(middleware)(createStore);
 
 const store = createStoreWithMiddleware(reducer);
