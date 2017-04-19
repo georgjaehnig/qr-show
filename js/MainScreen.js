@@ -267,6 +267,7 @@ class MainScreen extends Component {
       </View>
     );
   };
+
   componentDidUpdate() {
     console.log('componentDidUpdate');
     console.log('codes', this.props.codeSettings);
