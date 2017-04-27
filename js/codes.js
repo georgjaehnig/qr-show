@@ -52,11 +52,11 @@ export default function reducer(state = initialState, action = {}) {
         ...state  
       };
       nextState.codes = [
-        ...state.codes.slice(0, nextState.currentCodeIndex),
-        ...state.codes.slice(nextState.currentCodeIndex + 1),
+        ...state.codes.slice(0, state.currentCodeIndex),
+        ...state.codes.slice(state.currentCodeIndex + 1),
       ];
       // Limit index to array length.  
-      nextState.currentCodeIndex = Math.min(nextState.currentCodeIndex, nextState.codes.length - 1);
+      nextState.currentCodeIndex = Math.min(state.currentCodeIndex, state.codes.length - 1);
       return nextState;
     case 'setCurrentCodeIndex':
       nextState = {
