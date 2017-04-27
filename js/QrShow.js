@@ -20,19 +20,7 @@ const load = storage.createLoader(engine);
 
 load(store)
 	.then((newState) => {
-		// TODO: Find a way to call (again)
-		// scrollToCurrentCode from MainScreen,
-		// in order to get it scrolled to the loaded codes from the storage.
-		// Or: Let the scrolling happen during render().
-		// Actually, this should already happen since render already renders
-		// the codes from the storage. So it's weird that while it on the one hand
-		// correctly renders the Picker items after load(), it apparently cannot scroll 
-		// to correct code within the ScrollView.
-		// 
-		// Something like:
-		// MainScreen.props.scrollToCurrentCode();
-		console.log('loaded');
-		store.dispatch({type: 'setLoading', loading: false});
+		//console.log('loaded');
 	})
 	.catch((e) => console.log(e));
 
