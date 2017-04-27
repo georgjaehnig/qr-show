@@ -57,13 +57,15 @@ export default function reducer(state = initialState, action = {}) {
       ];
       // Limit index to array length.  
       nextState.currentCodeIndex = Math.min(state.currentCodeIndex, state.codes.length - 1);
+      console.log('state', state);
+      console.log('nextState', nextState);
       return nextState;
     case 'setCurrentCodeIndex':
       nextState = {
         ...state  
       };
       nextState.currentCodeIndex = action.currentCodeIndex;
-      //console.log('setCurrentCodeIndex', nextState.currentCodeIndex);
+      console.log('setCurrentCodeIndex', nextState.currentCodeIndex);
       return nextState;
     case 'setLoading':
       nextState = {

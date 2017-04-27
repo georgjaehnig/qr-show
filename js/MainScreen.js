@@ -160,8 +160,8 @@ class MainScreen extends Component {
 
   render() {
 
-    //console.log('render');
-    //console.log('loading', this.props.codeSettings.loading);
+    console.log('render');
+    console.log('codeSettings', this.props.codeSettings);
 
     if (this.props.codeSettings.loading) {
       return (
@@ -188,6 +188,7 @@ class MainScreen extends Component {
           style={styles.picker}
           selectedValue={this.props.codeSettings.currentCodeIndex}
           onValueChange={(currentCodeIndex) => { 
+            console.log('Picker onValueChange', currentCodeIndex);
             this.props.setCurrentCodeIndex(currentCodeIndex);
           }}
         >
@@ -236,9 +237,15 @@ class MainScreen extends Component {
               //console.log('scrolled to', event.nativeEvent.contentOffset.x);
               var currentCodeIndex = event.nativeEvent.contentOffset.x / (this.qrCodeSize + 40);
               if (this.isInt(currentCodeIndex)) {
-                //console.log('offset', event.nativeEvent.contentOffset.x);
-                //console.log('set currentCodeIndex from scroll', currentCodeIndex );
-                this.props.setCurrentCodeIndex(currentCodeIndex);
+                // Without the if, the setCurrentCodeIndex will trigger a new render
+                // even if the value remains the same.
+                // This is odd, since a new render should be only triggered
+                // if previous and new state are different.
+                if (currentCodeIndex != this.props.codeSettings.currentCodeIndex) {
+                  //console.log('offset', event.nativeEvent.contentOffset.x);
+                  //console.log('set currentCodeIndex from scroll', currentCodeIndex );
+                  this.props.setCurrentCodeIndex(currentCodeIndex);
+                }
               }
             }}
             scrollEventThrottle={500} // TODO: Seems to be ignored. Why?

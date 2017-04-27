@@ -18,11 +18,7 @@ const createStoreWithMiddleware = applyMiddleware(middleware)(createStore);
 const store = createStoreWithMiddleware(reducer);
 const load = storage.createLoader(engine);
 
-load(store)
-	.then((newState) => {
-		//console.log('loaded');
-	})
-	.catch((e) => console.log(e));
+load(store);
 
 import MainScreen     from './MainScreen.js';
 import PhoneScreen    from './PhoneScreen.js';
