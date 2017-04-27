@@ -157,7 +157,7 @@ class MainScreen extends Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount');
+    //console.log('componentDidMount');
     Linking.addEventListener('url', this.handleIncomingUrl);
     setTimeout(
       () => {
@@ -170,6 +170,9 @@ class MainScreen extends Component {
   } 
 
   render() {
+
+    //console.log('render');
+    //console.log('loading', this.props.codeSettings.loading);
 
     if (this.props.codeSettings.loading) {
       return (
@@ -189,8 +192,6 @@ class MainScreen extends Component {
 
     // Add some margin.
     this.qrCodeSize = this.qrCodeSize - 40;
-
-    console.log('render');
 
     return (
       <View style={styles.container}>
@@ -273,8 +274,8 @@ class MainScreen extends Component {
   };
 
   componentDidUpdate() {
-    console.log('componentDidUpdate');
-    console.log('codes', this.props.codeSettings);
+    //console.log('componentDidUpdate');
+    //console.log('codes', this.props.codeSettings);
   } 
 }
 
