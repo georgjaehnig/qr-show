@@ -143,13 +143,6 @@ class MainScreen extends Component {
     ShareMenu.clearSharedText();
   }
 
-  scrollToCurrentCode() {
-    console.log('currentCodeIndex', this.props.codeSettings.currentCodeIndex);
-    var scrollToX = (this.qrCodeSize + 40) * this.props.codeSettings.currentCodeIndex;
-    this.refs.QRCodes.scrollTo({x: scrollToX, animated: false}) 
-    //console.log('scrollToX', scrollToX);
-  };
-
   // Overrides:
 
   componentWillMount() {
@@ -159,10 +152,6 @@ class MainScreen extends Component {
   componentDidMount() {
     //console.log('componentDidMount');
     Linking.addEventListener('url', this.handleIncomingUrl);
-    setTimeout(
-      () => {
-        this.scrollToCurrentCode();
-    }, 0);
   } 
 
   componentWillUnmount() {
@@ -228,7 +217,15 @@ class MainScreen extends Component {
           />
         </View>
         <ScrollView 
-            ref='QRCodes'
+            ref={(scrollView) => {
+              var scrollToX = (this.qrCodeSize + 40) * this.props.codeSettings.currentCodeIndex;
+              //console.log('scrollView', scrollView);
+              //console.log('scrollToX', scrollToX);
+              if (scrollView) {
+                // Remove setTimeout wrapper when https://github.com/facebook/react-native/issues/6849 is resolved.
+                setTimeout(() => scrollView.scrollTo({x: scrollToX, animated: false}), 0);
+              }
+            }}
             horizontal={true} 
             showsHorizontalScrollIndicator={false} 
             showsVerticalScrollIndicator={false} 
