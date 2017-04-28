@@ -9,17 +9,6 @@ initialState = {
         url: 'https://github.com/georgjaehnig/qr-show',
       }
     },
-    {
-      value: 'wifi:something',
-      type:  'Wifi',
-      fields: {
-        description: 'my-wifi',
-        ssid: 'ciferamondo',
-        password: 'somepass',
-        type: 'WPA',
-        hidden: false,
-      }
-    },
   ],
   currentCodeIndex: 0,
   loading: true,
