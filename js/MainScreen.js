@@ -150,7 +150,7 @@ class MainScreen extends Component {
   }
 
   componentDidMount() {
-    //console.log('componentDidMount');
+    console.log('componentDidMount');
     Linking.addEventListener('url', this.handleIncomingUrl);
   } 
 
@@ -162,6 +162,7 @@ class MainScreen extends Component {
 
     console.log('render');
     console.log('codeSettings', this.props.codeSettings);
+    //console.log('codes', this.props.codeSettings.codes);
 
     if (this.props.codeSettings.loading) {
       return (
@@ -243,7 +244,7 @@ class MainScreen extends Component {
                 // if previous and new state are different.
                 if (currentCodeIndex != this.props.codeSettings.currentCodeIndex) {
                   //console.log('offset', event.nativeEvent.contentOffset.x);
-                  //console.log('set currentCodeIndex from scroll', currentCodeIndex );
+                  console.log('set currentCodeIndex from scroll', currentCodeIndex );
                   this.props.setCurrentCodeIndex(currentCodeIndex);
                 }
               }
@@ -278,7 +279,7 @@ class MainScreen extends Component {
   };
 
   componentDidUpdate() {
-    //console.log('componentDidUpdate');
+    console.log('componentDidUpdate');
     //console.log('codes', this.props.codeSettings);
   } 
 }
