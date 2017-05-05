@@ -161,7 +161,7 @@ class MainScreen extends Component {
   render() {
 
     console.log('render');
-    console.log('codeSettings', this.props.codeSettings);
+    //console.log('codeSettings', this.props.codeSettings);
     //console.log('codes', this.props.codeSettings.codes);
 
     if (this.props.codeSettings.loading) {
