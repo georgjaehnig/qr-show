@@ -183,13 +183,15 @@ class MainScreen extends Component {
     // Add some margin.
     this.qrCodeSize = this.qrCodeSize - 40;
 
+    const {codeSettings} = this.props;
+
     return (
       <View style={styles.container}>
         <Picker
           style={styles.picker}
-          selectedValue={this.props.codeSettings.currentCodeIndex}
+          selectedValue={codeSettings.currentCodeIndex}
           onValueChange={(currentCodeIndex) => { 
-            console.log('Picker onValueChange', currentCodeIndex);
+            console.log('Picker onValueChange ==================================================', currentCodeIndex);
             this.props.setCurrentCodeIndex(currentCodeIndex);
           }}
         >
