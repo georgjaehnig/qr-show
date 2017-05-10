@@ -24,6 +24,7 @@ import {
 
 import QRCode from 'react-native-qrcode';
 import URL from 'url-parse';
+import { decode as decodeGe0 } from 'mapsme-ge0';
 
 import ShareMenu from 'react-native-share-menu';
  
@@ -104,27 +105,22 @@ class MainScreen extends Component {
       // Replace linebreaks.
       description = description.replace(/(\n)+/g, ' ');
       var ge0Url = matches[4];
-      // Fetch the ge0 url and read its whole HTML.
-      fetch(ge0Url).then((response) => {
-        response.text().then((ge0Text) => {
-          // Find coordinates in the HTML body.
-          var ge0Matches = ge0Text.match(/<div class="ge0coordBox">(.*)<\/div>/mg);
-          var lat = ge0Matches[0].match(/<div class="ge0coordBox">(.*)<\/div>/)[1];
-          var lon = ge0Matches[1].match(/<div class="ge0coordBox">(.*)<\/div>/)[1];
-          // Open LocationScreen.
-          this.props.navigation.navigate(
-            'Location', 
-            {
-              isNew: true, 
-              fields: {
-                description: description,
-                lat: lat,
-                lon: lon,
-              }
-            } 
-          );
-        });
-      });
+      var parsedGe0Url = URL(ge0Url);
+      var pathElements = parsedGe0Url.pathname.split('/');
+      var ge0Code = pathElements[1];
+      var ge0CodeDecoded = decodeGe0(ge0Code);
+      // Open LocationScreen.
+      this.props.navigation.navigate(
+        'Location', 
+        {
+          isNew: true, 
+          fields: {
+            description: description,
+            lat: ge0CodeDecoded[0],
+            lon: ge0CodeDecoded[1],
+          }
+        } 
+      );
       ShareMenu.clearSharedText();
       return;
     }
