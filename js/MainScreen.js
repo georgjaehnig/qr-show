@@ -116,8 +116,8 @@ class MainScreen extends Component {
           isNew: true, 
           fields: {
             description: description,
-            lat: ge0CodeDecoded[0],
-            lon: ge0CodeDecoded[1],
+            lat: String(ge0CodeDecoded.lat),
+            lon: String(ge0CodeDecoded.lon),
           }
         } 
       );
