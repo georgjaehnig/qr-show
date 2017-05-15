@@ -4,23 +4,10 @@ const l = function(msg, obj) {
 }
 
 initialState = {
-
-  // Default codes.
-  codes: [
-    {
-      value: 'https://github.com/georgjaehnig/qr-show',
-      type:  'URL',
-      fields: {
-        description: 'QR Show on Github',
-        url: 'https://github.com/georgjaehnig/qr-show',
-      }
-    },
-  ],
+  // Defaults.
+  codes: [],
   currentCodeIndex: 0,
   loading: true,
-  test: {
-    foo: 1,
-  }
 }
 
 export default function reducer(state = initialState, action = {}) {
@@ -32,6 +19,28 @@ export default function reducer(state = initialState, action = {}) {
       nextState.codes = [
         ...state.codes,
         action.code,
+      ];
+      nextState.currentCodeIndex = nextState.codes.length - 1;
+      return nextState;
+    case 'addInitialCode':
+      nextState = {
+        ...state  
+      };
+      nextState.loading = false;
+      if (state.codes.length > 0) {
+        return nextState;
+      }
+      var defaultCode = {
+        value: 'https://github.com/georgjaehnig/qr-show',
+        type:  'URL',
+        fields: {
+          description: 'QR Show on Github',
+          url: 'https://github.com/georgjaehnig/qr-show',
+        }
+      };
+      nextState.codes = [
+        ...state.codes,
+        defaultCode,
       ];
       nextState.currentCodeIndex = nextState.codes.length - 1;
       return nextState;

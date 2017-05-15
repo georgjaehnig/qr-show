@@ -20,7 +20,7 @@ const load = storage.createLoader(engine);
 
 load(store)
   .then((newState) => { 
-    store.dispatch({type: 'setLoading', loading: false});
+    store.dispatch({type: 'addInitialCode'});
   });
 
 import MainScreen     from './MainScreen.js';
